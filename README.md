@@ -1,3 +1,5 @@
+TEST
+
 # Hi, I'm bones
 
 I'm a happy little skeleton. You can clone me to use as a starter on your projects!
