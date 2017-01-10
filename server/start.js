@@ -9,7 +9,12 @@ const passport = require('passport')
 // That means that we can require paths relative to the app root by
 // saying require('APP/whatever').
 //
+
+// symLink  = fake filepath to points to another folder
+// (our project): a file path that points to our app root
+
 // This next line requires our root index.js:
+
 const pkg = require('APP')
 
 const app = express()
@@ -35,6 +40,8 @@ module.exports = app
   .use(passport.session())
   
   // Serve static files from ../public
+  // It goes and finds the actual ABSOLUTE path ('..' doesn't show)
+  // Express needs an absolute path to work with 
   .use(express.static(resolve(__dirname, '..', 'public')))
 
   // Serve our api
@@ -43,6 +50,8 @@ module.exports = app
   // Send index.html for anything else.
   .get('/*', (_, res) => res.sendFile(resolve(__dirname, '..', 'public', 'index.html')))
 
+//when we are testing/seeding/migrations, we don't really want the server to listen
+//for requests
 if (module === require.main) {
   // Start listening only if we're the main module.
   // 
