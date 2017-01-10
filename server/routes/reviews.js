@@ -47,10 +47,11 @@ Router.put('/:reviewId', (req, res, next) => {
         {
             where: {
                 id: req.params.reviewId
-            }
+            },
+            returning: true
         })
 	.then((updatedReview) => {
-		res.sendStatus(204);
+        res.json(updatedReview[1][0]); // Send back the updated review
 	})
 	.catch(next);
 });
@@ -64,8 +65,7 @@ Router.post('/', (req, res, next) => {
         title: req.body.title
     })
 	.then((newReview) => {
-        // newReview.setProduct();
-		res.json(newReview);
+		res.status(201).json(newReview);
 	})
 	.catch(next);
 });

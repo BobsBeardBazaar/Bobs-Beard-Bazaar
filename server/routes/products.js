@@ -47,10 +47,11 @@ Router.put('/:productId', (req, res, next) => {
 
 		where: {
 			id: req.params.productId,
-		}
+		},
+        returning: true
 	})
 	.then((updatedProduct) => {
-		res.sendStatus(204);
+		res.json(updatedProduct[1][0]); // Send back the updated product
 	})
 	.catch(next);
 });
@@ -65,7 +66,7 @@ Router.post('/', (req, res, next) => {
 		price: req.body.price
 	})
 	.then((newProduct) => {
-		res.json(newProduct);
+		res.status(201).json(newProduct);
 	})
 	.catch(next);
 });
