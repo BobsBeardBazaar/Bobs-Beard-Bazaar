@@ -4,7 +4,7 @@ const Product = db.Product;
 const Router = require('express').Router();
 
 
-//GET all the Products 
+//GET all the Products
 Router.get('/', (req, res, next) => {
 	Product.findAll({})
 	.then((products) => {
@@ -24,7 +24,7 @@ Router.get('/:productId', (req, res, next) => {
 	.catch(next);
 });
 
-//DELETE product 
+//DELETE product
 Router.delete('/:productId', (req, res, next) => {
 	Product.destroy({
 		where: {
@@ -39,12 +39,12 @@ Router.delete('/:productId', (req, res, next) => {
 
 //PUT (update) a product
 Router.put('/:productId', (req, res, next) => {
-	Product.update({ name: req.body.name, 
+	Product.update({ name: req.body.name,
 		image: req.body.image,
-		description: req.body.description, 
+		description: req.body.description,
 		quantity: req.body.quantity,
-		price: req.body.price }, { 
-		
+		price: req.body.price }, {
+
 		where: {
 			id: req.params.productId,
 		}
@@ -57,14 +57,12 @@ Router.put('/:productId', (req, res, next) => {
 
 //POST a new product
 Router.post('/', (req, res, next) => {
-	
-	console.log("Router.Post req body: ", req);
 
-	Product.create({ name: req.body.name, 
+	Product.create({ name: req.body.name,
 		image: req.body.image,
-		description: req.body.description, 
+		description: req.body.description,
 		quantity: req.body.quantity,
-		price: req.body.price 
+		price: req.body.price
 	})
 	.then((newProduct) => {
 		res.json(newProduct);
@@ -73,8 +71,3 @@ Router.post('/', (req, res, next) => {
 });
 
 module.exports = Router;
-
-
-
-
-

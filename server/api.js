@@ -7,7 +7,8 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
   .use('/auth', require('./auth/auth'))
   .use('/users', require('./routes/users'))
-  .use('/products', require('./routes/product'))
+  .use('/products', require('./routes/products'))
+  .use('/reviews', require('./routes/reviews'))
 
 // Send along any errors
 api.use((err, req, res, next) => {
