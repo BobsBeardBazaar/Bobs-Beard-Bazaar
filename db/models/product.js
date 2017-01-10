@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize')
 const db = require('APP/db')
-const mustache = require('APP/public/mustacheDefault.jpg')
+const mustache = 'https://tribwxmi.files.wordpress.com/2013/05/mustache-web.jpeg';
 
 //Set up the products model which will represent all the products sold on our store.
 const Product = db.define('products', {

@@ -6,5 +6,13 @@
 
 const User = require('./user');
 const Product = require('./product');
+const Review = require('./review');
 
-module.exports = {User, Product}
+//Associations
+Review.belongsTo(Product);
+Product.hasMany(Review);
+Review.belongsTo(User, { as: 'author'});
+User.hasMany(Review)
+
+
+module.exports = {User, Product, Review}

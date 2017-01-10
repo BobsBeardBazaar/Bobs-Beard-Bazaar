@@ -22,6 +22,10 @@ const OAuth = db.define('oauths', {
 	indexes: [{fields: ['uid'], unique: true,}],
 })
 
+/*
+  V2: method to add or access a users third party
+      authentication info
+*/
 OAuth.V2 = (accessToken, refreshToken, profile, done) =>
   this.findOrCreate({
     where: {
@@ -57,7 +61,7 @@ OAuth.setupStrategy =
   provider,
   strategy,
   config,
-  oauth=OAuth.V2,
+  oauth=OAuth.V2, 
   passport 
 }) => {      
   const undefinedKeys = Object.keys(config)
