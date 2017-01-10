@@ -1,5 +1,6 @@
 'use strict';
 
+
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 const mustache = 'https://tribwxmi.files.wordpress.com/2013/05/mustache-web.jpeg';
