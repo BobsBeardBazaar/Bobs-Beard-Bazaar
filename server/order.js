@@ -1,0 +1,35 @@
+'use strict'
+
+const db = require('APP/db')
+const Order = db.model('orders')
+
+
+module.exports = require('express').Router()
+	//GET one order 
+	.get('/:orderId', (req, res, next) =>
+		Order.findOne(req.params.orderId)
+		.then(order => res.json(order))
+		.catch(next))
+	//GET all the orders of this user 
+	.get('/:userId', (req, res, next) => 
+		Order.findAll(req.params.userId)
+		.then(order => res.json(order))
+		.catch(next))
+	//GET all the orders for the admin 
+	.get('/', (req, res, next) => 
+		Order.findAll(req.params.userId)
+		.then(orders => res.json(orders))
+		.catch(next))
+	.post('/', (req, res, next) =>
+		Order.create(req.body)
+		.then(cart => res.status(201).json(cart))
+		.catch(next))
+	.delete('/:id', (req, res, next) =>
+		Order.destroy(req.params.id)
+		.then(order => res.sendStatus(204))
+		.catch(next))
+	.put('/:id', (req, res, next) => 
+		Order.update(req.body, {where: {id: req.params.id}})
+		.then(result => res.json(result[1]))
+  		.catch(next))
+  	
