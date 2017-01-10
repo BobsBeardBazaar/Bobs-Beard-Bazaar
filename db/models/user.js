@@ -11,7 +11,11 @@ const User = db.define('users', {
     validate: {
 			isEmail: true,
 			notEmpty: true,
-		}
+		}, 
+  isAdmin: {   //Added by the team to the boilerplate
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
   },
 
   // We support oauth, so users may or may not have passwords.
