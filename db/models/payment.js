@@ -25,7 +25,7 @@ const Payment = db.define('payments', {
 	},
 	securityCode: {
 		type: Sequelize.INTEGER,
-		allowNull: false
+		allowNull: false,
 		validate: {
 			max: 9999
 		}

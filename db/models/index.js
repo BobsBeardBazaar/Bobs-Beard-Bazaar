@@ -21,11 +21,15 @@ const OrderProducts = require('./orderProducts');
 // # Add associations
 // Product foreign key on each Review
 Review.belongsTo(Product);
-Product.hasMany(Reviews);
+Product.hasMany(Review);
 
 // User foreign key on each Review
 Review.belongsTo(User, {as: 'Author'});
-User.hasMany(Review);
+
+//took the line below out, because we think it might not be necessary
+//it was adding a user_id field to the reviews table when we already had author_id
+
+//User.hasMany(Review, {as: 'Author'});
 
 // User foreign key on each Address
 User.hasMany(Address);
@@ -58,5 +62,6 @@ Product.belongsToMany(Cart, {through: CartProducts});
 // Join table 'OrderProduct'
 Order.belongsToMany(Product, {through: OrderProducts});
 Product.belongsToMany(Order, {through: OrderProducts});
+
 
 module.exports = {User, Product, Review, Category, Address, Cart, Order, Payment}
