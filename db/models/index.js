@@ -10,6 +10,9 @@ const Address = require('./address');
 const Cart = require('./cart');
 const Order = require('./order');
 const Payment = require('./payment');
+const Product = require('./product');
+const Review = require('./review');
+const Category = require('./category');
 
 // Require JOIN table models
 const CartProducts = require('./cartProducts');
@@ -56,5 +59,4 @@ Product.belongsToMany(Cart, {through: CartProducts});
 Order.belongsToMany(Product, {through: OrderProducts});
 Product.belongsToMany(Order, {through: OrderProducts});
 
-
-module.exports = { User, Address, Cart, Order, Payment };
+module.exports = {User, Product, Review, Category, Address, Cart, Order, Payment}

@@ -9,6 +9,7 @@ import Jokes from './components/Jokes'
 import Login from './components/Login'
 import WhoAmI from './components/WhoAmI'
 
+
 const ExampleApp = connect(
   ({ auth }) => ({ user: auth })
 ) (
