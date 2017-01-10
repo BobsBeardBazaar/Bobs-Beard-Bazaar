@@ -7,12 +7,12 @@ const Order = db.define('orders', {
 	status: {
 		type: Sequelize.ENUM,
 		allowNull: false,
-		values: ['created', 'processing', 'canceled', 'shipped', 'delivered','completed']
+		values: ['created', 'processing', 'canceled', 'shipped', 'delivered', 'completed']
 	},
 	total: {
 		type: Sequelize.FLOAT,
 		allowNull: false
 	}
-})
+});
 
-module.exports = Address;
+module.exports = Order;
