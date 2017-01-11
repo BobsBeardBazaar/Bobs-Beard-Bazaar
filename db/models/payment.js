@@ -13,7 +13,7 @@ const Payment = db.define('payments', {
 		allowNull: false
 	},
 	cardNumber: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.STRING,
 		allowNull: false,
 		validate: {
 			isCreditCard: true

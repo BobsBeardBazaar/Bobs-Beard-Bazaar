@@ -28,7 +28,8 @@ module.exports = require('express').Router()
 	.post('/', (req, res, next) =>
 		Address.create({
 			name: req.body.name,
-			address: req.body.address
+			address: req.body.address,
+			user_id: req.body.user_id
 		})
 		.then(address => res.status(201).json(address))
 		.catch(next))
