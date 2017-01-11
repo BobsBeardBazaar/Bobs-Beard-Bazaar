@@ -17,7 +17,8 @@ module.exports = require('express').Router()
 
 	.post('/', (req, res, next) =>
 		Cart.create({
-			total: req.body.total
+			total: req.body.total,
+			user_id: req.body.user_id
 		})
 		.then(cart => res.status(201).json(cart))
 		.catch(next))
@@ -39,4 +40,4 @@ module.exports = require('express').Router()
 			returning: true
 		})
 		.then(result => res.json(result[1][0]))
-  	.catch(next))
+  		.catch(next))

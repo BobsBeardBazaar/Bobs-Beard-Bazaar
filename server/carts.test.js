@@ -6,54 +6,51 @@ const app = require('./start');
 
 describe('/api/carts', () => {
 
-    it('POST a new address (correctly, passing in a string value)', () =>
+    it('POST a new cart (correctly, passing in a string value)', () =>
         request(app)
-            .post('/api/addresses')
+            .post('/api/carts')
             .send({
-                name: 'Home',
-                address: '111 Main st. New Jersey 090876',
-                user_id: 2
+                total: 100,
+                user_id: 1
             })
             .expect(201)
             .then(res => expect(res.body).to.contain({
-                name: 'Home',
-                address: '111 Main st. New Jersey 090876'
+                total: 100,
+                user_id: 1
             }))
     )
 
 
-    it('GET all addresses for one user', () =>
+    it('GET cart for one user', () =>
         request(app)
-            .get(`/api/addresses/2`)
+            .get(`/api/carts/1`)
             .expect(200)
-            .then(res => expect(res.body[0]).to.contain(
+            .then(res => expect(res.body).to.contain(
                 {
-                    name: 'Home',
-                    address: '111 Main st. New Jersey 090876',
-                    user_id: 2
+                    total: 100,
+                    user_id: 1
                 }
             ))
     )
 
-    it('UPDATE an address ', () =>
+    it('UPDATE a cart ', () =>
         request(app)
-            .put('/api/addresses/1')
+            .put('/api/carts/1')
             .send({
-                name: 'Business',
-                address: '111 Main st. New Jersey 090876',
-                user_id: 2
+                total: 1000,
+                user_id: 1
             })
             .expect(200)
             .then(res => expect(res.body).to.contain({
-                name: 'Business',
-                address: '111 Main st. New Jersey 090876'
+                total: 1000,
+                user_id: 1
             }))
     )
 
 
-    it('DELETE /:addressId', () =>
+    it('DELETE /:cartId', () =>
         request(app)
-            .delete(`/api/addresses/1`)
+            .delete(`/api/carts/1`)
             .expect(204)
     )
 
