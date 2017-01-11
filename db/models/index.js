@@ -21,7 +21,7 @@ const OrderProducts = require('./orderProducts');
 // # Add associations
 // Product foreign key on each Review
 Review.belongsTo(Product);
-Product.hasMany(Reviews);
+Product.hasMany(Review);
 
 // User foreign key on each Review
 Review.belongsTo(User, {as: 'Author'});
