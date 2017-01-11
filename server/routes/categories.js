@@ -1,41 +1,44 @@
 
 const Sequelize = require('sequelize');
-const db = require('./db/models');
-const Categories = db.Categories;
+const db = require('APP/db/models');
+const Category = db.Category;
 
 const Router = require('express').Router();
 
 
-//GET all Categories
-//api/categories/
+//GET all Category
+//api/Category/
 Router.get('/', (req, res, next) => {
-	Categories.findAll({})
+	Category.findAll({})
 	.then((allCategories) => {
-		res.json(allCategories);
+		console.log("allCategories: ", allCategories.dataValues);
+		res.json(allCategories); 
 	})
 	.catch(next);
 });
 
 //POST a new Category
-//api/categories/
+//api/Category/
 Router.post('/', (req, res, next) => {
-	Categories.create({name : req.body.name})
+	Category.create({name : req.body.name})
 	.then((newCategory) => {
-		res.json(newCategory);
+		res.status(201).json(newCategory); 
 	})
 	.catch(next);
 });
 
 //DELETE a Category
-//api/categories/:categoryId
+//api/Category/:categoryId
 Router.delete('/:categoryId', (req, res, next) => {
-	Categories.destroy({
+	Category.destroy({
 		where: {
 			id: req.params.categoryId
 		}
 	})
-	.then((removedCategory) => {
-		res.send(200).json(removedCategory);
+	.then((numDestroyedRows) => {
+		res.status(200).json(numDestroyedRows);
 	})
 	.catch(next);
 });
+
+module.exports = Router;
