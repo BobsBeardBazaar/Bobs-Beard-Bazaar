@@ -19,7 +19,7 @@ module.exports = require('express').Router()
 	.post('/', (req, res, next) =>
 		Payment.create(req.body)
 		.then(payment => res.status(201).json(payment))
-		.catch(err => console.log(err)))
+	.catch(next))
 
 	//deletes payment method
 	.delete('/:id', (req, res, next) =>

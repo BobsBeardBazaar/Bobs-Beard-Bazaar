@@ -33,14 +33,35 @@ describe('/api/payments', () => {
                     user_id: 2
                 }
             ))
-    ) 
+    )
+
+    it('UPDATE a payment ', () =>
+    request(app)
+        .put('/api/payments/1')
+        .send({
+            name: 'Surabhi',
+            cardName: 'Master',
+            cardNumber: '1234567891234567',
+            expirationDate: 1012,
+            securityCode: 111,
+            user_id: 2
+        })
+        .expect(200)
+        .then(res => expect(res.body).to.contain({
+            name: 'Surabhi',
+            cardName: 'Master',
+            cardNumber: '1234567891234567',
+            expirationDate: 1012,
+            securityCode: 111,
+            user_id: 2
+        }))
+    )
 
     it('DELETE /:paymentId', () =>
         request(app)
-            .delete(`/api/payment/1`)
+            .delete(`/api/payments/1`)
             .expect(204)
-            .then(res => expect(res.body).to.equal(1))
-    )   
+    )
 
-    
+
   })

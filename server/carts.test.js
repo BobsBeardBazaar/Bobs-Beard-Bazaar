@@ -1,10 +1,10 @@
 const request = require('supertest-as-promised');
 const {expect} = require('chai');
 const db = require('APP/db');
-const Address = require('APP/db/models/address');
+const Cart = require('APP/db/models/cart');
 const app = require('./start');
 
-describe('/api/addresses', () => {
+describe('/api/carts', () => {
 
     it('POST a new address (correctly, passing in a string value)', () =>
         request(app)

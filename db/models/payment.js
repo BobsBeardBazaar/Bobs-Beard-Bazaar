@@ -15,9 +15,9 @@ const Payment = db.define('payments', {
 	cardNumber: {
 		type: Sequelize.STRING,
 		allowNull: false,
-		validate: {
-			isCreditCard: true
-		}
+		// validate: {
+		// 	isCreditCard: true
+		// }
 	},
 	expirationDate: {
 		type: Sequelize.INTEGER,
