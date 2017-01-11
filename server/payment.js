@@ -5,21 +5,33 @@ const Payment = db.model('payments')
 
 
 module.exports = require('express').Router()
+	//gets all payment methods for one user
 	.get('/:userId', (req, res, next) =>
-		Payment.findAll(req.params.userId)
+		Payment.findAll({
+			where: {
+				user_id: req.params.userId
+			}
+		})
 		.then(payments => res.json(payments))
 		.catch(next))
 
+	//creates payment method
 	.post('/', (req, res, next) =>
 		Payment.create(req.body)
 		.then(payment => res.status(201).json(payment))
 		.catch(next))
 
+	//deletes payment method
 	.delete('/:id', (req, res, next) =>
-		Payment.destroy(req.params.id)
+		Payment.destroy({
+			where: {
+				id: req.params.id
+			}
+		})
 		.then(payment => res.sendStatus(204))
 		.catch(next))
 
+	// updates payment method
 	.put('/:id', (req, res, next) =>
 		Payment.update(req.body,
 			{

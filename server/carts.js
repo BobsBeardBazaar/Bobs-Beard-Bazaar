@@ -4,8 +4,14 @@ const db = require('APP/db')
 const Cart = db.model('carts')
 
 module.exports = require('express').Router()
+
+	//each user has only one cart
 	.get('/:userId', (req, res, next) =>
-		Cart.findOne(req.params.userId)
+		Cart.findOne({
+			where: {
+				user_id: req.params.userId
+			}
+		})
 		.then(cart => res.json(cart))
 		.catch(next))
 
@@ -16,15 +22,19 @@ module.exports = require('express').Router()
 		.then(cart => res.status(201).json(cart))
 		.catch(next))
 
-	.delete('/:id', (req, res, next) =>
-		Cart.destroy(req.params.id)
+	.delete('/:cartId', (req, res, next) =>
+		Cart.destroy({
+			where: {
+				id: req.params.cartId
+			}
+		})
 		.then(cart => res.sendStatus(204))
 		.catch(next))
 
-	.put('/:id', (req, res, next) =>
+	.put('/:cartId', (req, res, next) =>
 		Cart.update(req.body, {
 			where: {
-				id: req.params.id
+				id: req.params.cartId
 			},
 			returning: true
 		})

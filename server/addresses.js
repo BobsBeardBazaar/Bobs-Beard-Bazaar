@@ -5,11 +5,26 @@ const Address = db.model('addresses')
 
 
 module.exports = require('express').Router()
+	//localhost:1337/api/addresses/{number}
+	//get all the addresses for one user
 	.get('/:userId', (req, res, next) =>
-		Address.findAll(req.params.userId)
+		Address.findAll({
+			where: {
+				user_id: req.params.userId
+			}
+		})
 		.then(addresses => res.json(addresses))
 		.catch(next))
 
+	//we may not actually need this route, but we put it here just in case
+	//get one address for one user
+	//localhost:1337/api/addresses/{userId}/{addressId}
+	.get('/:userId/:addressId', (req, res, next) =>
+		Address.findById(req.params.addressId)
+		.then(addresses => res.json(addresses))
+		.catch(next))
+
+		//localhost:1337/api/addresses/{addressId}
 	.post('/', (req, res, next) =>
 		Address.create({
 			name: req.body.name,
@@ -18,15 +33,21 @@ module.exports = require('express').Router()
 		.then(address => res.status(201).json(address))
 		.catch(next))
 
-	.delete('/:id', (req, res, next) =>
-		Address.destroy(req.params.id)
+		//localhost:1337/api/addresses/{addressId}
+	.delete('/:addressId', (req, res, next) =>
+		Address.destroy({
+			where: {
+				id: req.params.addressId
+			}
+		})
 		.then(address => res.sendStatus(204))
 		.catch(next))
 
-	.put('/:id', (req, res, next) =>
+		//localhost:1337/api/addresses/{addressId}
+	.put('/:addressId', (req, res, next) =>
 		Address.update(req.body, {
 			where: {
-				id: req.params.id
+				id: req.params.addressId
 			},
 			returning: true
 		})

@@ -7,14 +7,18 @@ const Order = db.model('orders')
 module.exports = require('express').Router()
 	//GET one order
 	.get('/:orderId', (req, res, next) =>
-		Order.findOne(req.params.orderId)
+		Order.findById(req.params.orderId)
 		.then(order => res.json(order))
 		.catch(next))
 
 	//GET all the orders of this user
 	//localhost:1337/api/orders/user/:userId
 	.get('/user/:userId', (req, res, next) =>
-		Order.findAll(req.params.userId)
+		Order.findAll({
+			where: {
+				user_id: req.params.userId
+			}
+		})
 		.then(order => res.json(order))
 		.catch(next))
 
@@ -30,7 +34,11 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.delete('/:id', (req, res, next) =>
-		Order.destroy(req.params.id)
+		Order.destroy({
+			where: {
+				id: req.params.id
+			}
+		})
 		.then(order => res.sendStatus(204))
 		.catch(next))
 
