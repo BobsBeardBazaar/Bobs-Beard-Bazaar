@@ -31,8 +31,8 @@ Router.delete('/:productId', (req, res, next) => {
 			id: req.params.productId
 		}
 	})
-	.then((deletedProductRow) => {
-		res.status(200).json(deletedProductRow);
+	.then((numDestroyedRows) => {
+		res.status(200).json(numDestroyedRows);
 	})
 	.catch(next);
 });
@@ -58,7 +58,6 @@ Router.put('/:productId', (req, res, next) => {
 
 //POST a new product
 Router.post('/', (req, res, next) => {
-
 	Product.create({ name: req.body.name,
 		image: req.body.image,
 		description: req.body.description,

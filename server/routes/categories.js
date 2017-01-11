@@ -11,8 +11,7 @@ const Router = require('express').Router();
 Router.get('/', (req, res, next) => {
 	Category.findAll({})
 	.then((allCategories) => {
-		console.log("allCategories: ", allCategories.dataValues);
-		res.json(allCategories); 
+		res.json(allCategories);
 	})
 	.catch(next);
 });
@@ -22,7 +21,7 @@ Router.get('/', (req, res, next) => {
 Router.post('/', (req, res, next) => {
 	Category.create({name : req.body.name})
 	.then((newCategory) => {
-		res.status(201).json(newCategory); 
+		res.status(201).json(newCategory);
 	})
 	.catch(next);
 });
