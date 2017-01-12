@@ -5,7 +5,7 @@ const Review = require('APP/db/models/review');
 const Product = require('APP/db/models/product');
 const app = require('../start');
 
-describe('/api/reviews', (done) => {
+describe('/api/reviews', () => {
 
     let review1, review2, theProduct;
 
