@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const Sequelize = require('sequelize')
-const db = require('APP/db')
+const Sequelize = require('sequelize');
+const db = require('APP/db');
 
 // This table is used as the JOIN table for Order and Product
 const OrderProducts = db.define('orderProducts', {

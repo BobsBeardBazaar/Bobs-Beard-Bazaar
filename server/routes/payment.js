@@ -18,6 +18,11 @@ module.exports = require('express').Router()
 	//creates payment method
 	.post('/', (req, res, next) =>
 		Payment.create(req.body)
+        // Payment.create({
+        //     ccn: 11111111111111,
+        //     address: 'laskdjfalkjsd'
+        //     // ccv: 987
+        // })
 		.then(payment => res.status(201).json(payment))
 	.catch(next))
 
