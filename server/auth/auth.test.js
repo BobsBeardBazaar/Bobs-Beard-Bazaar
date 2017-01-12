@@ -66,7 +66,7 @@ describe('/api/auth', () => {
     const agent = request.agent(app)
 
     before('log in', () => agent
-      .post('/api/auth/local/login')
+      .post('/api/auth/local/login') 
       .send(alice))
 
     it('logs you out and redirects to whoami', () => agent

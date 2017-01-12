@@ -9,6 +9,7 @@ const auth = require('express').Router()
 
 /*************************
  * Auth strategies
+
  *
  * The OAuth model knows how to configure Passport middleware.
  * To enable an auth strategy, ensure that the appropriate
@@ -29,6 +30,7 @@ const auth = require('express').Router()
  * Concentrating your secrets this way will make it less likely that you
  * accidentally push them to Github, for example.
  *
+
  * When you deploy to production, you'll need to set up these environment
  * variables with your hosting provider.
  **/
@@ -120,7 +122,7 @@ passport.use(new (require('passport-local').Strategy) (
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
-//initial entry point for user to request login to google; redirects user to google
+//initial entry point for user to request login to google; redirects user to google (YP added this)
 auth.get('/:strategy', (req, res, next) => {
   passport.authenticate(req.params.strategy)(req, res, next)
 })
