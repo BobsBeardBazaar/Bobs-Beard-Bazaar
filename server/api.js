@@ -7,9 +7,15 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
   .use('/auth', require('./auth/auth'))
   .use('/users', require('./routes/users'))
+
+  .use('/addresses', require('./routes/addresses'))
+  .use('/carts', require('./routes/carts'))
+  .use('/categories', require('./routes/categories'))
+  .use('/orders', require('./routes/orders'))
+  .use('/payments', require('./routes/payment'))
   .use('/products', require('./routes/products'))
   .use('/reviews', require('./routes/reviews'))
-  .use('/categories', require('./routes/categories'))
+  
 // Send along any errors
 api.use((err, req, res, next) => {
   res.status(500).send(err)

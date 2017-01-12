@@ -13,11 +13,11 @@ const Payment = db.define('payments', {
 		allowNull: false
 	},
 	cardNumber: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.STRING,
 		allowNull: false,
-		validate: {
-			isCreditCard: true
-		}
+		// validate: {
+		// 	isCreditCard: true
+		// }
 	},
 	expirationDate: {
 		type: Sequelize.INTEGER,
