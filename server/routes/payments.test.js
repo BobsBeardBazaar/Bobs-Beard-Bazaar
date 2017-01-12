@@ -2,7 +2,7 @@ const request = require('supertest-as-promised')
 const {expect} = require('chai')
 const db = require('APP/db')
 const Payment = require('APP/db/models/payment')
-const app = require('./start')
+const app = require('../start')
 
 describe('/api/payments', () => {
     it('POST creates a payment', () =>

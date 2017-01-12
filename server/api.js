@@ -5,12 +5,12 @@ const api = module.exports = require('express').Router()
 
 api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
-  .use('/auth', require('./auth'))
-  .use('/users', require('./users'))
-  .use('/addresses', require('./addresses'))
-  .use('/carts', require('./carts'))
-  .use('/orders', require('./orders'))
-  .use('/payments', require('./payment'))
+  .use('/auth', require('./auth/auth'))
+  .use('/users', require('./routes/users'))
+  .use('/addresses', require('./routes/addresses'))
+  .use('/carts', require('./routes/carts'))
+  .use('/orders', require('./routes/orders'))
+  .use('/payments', require('./routes/payment'))
 
 // Send along any errors
 api.use((err, req, res, next) => {
