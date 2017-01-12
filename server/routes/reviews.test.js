@@ -2,21 +2,44 @@ const request = require('supertest-as-promised');
 const {expect} = require('chai');
 const db = require('APP/db');
 const Review = require('APP/db/models/review');
+const Product = require('APP/db/models/product');
 const app = require('../start');
 
-describe('/api/reviews', () => {
+describe('/api/reviews', (done) => {
 
-    const review1 = {
-        comment: 'No words',
-        rating: 5,
-        title: 'Andrews fabulous mustache'
+    let review1, review2, theProduct;
+
+    const product1 = {
+        name: 'Andrews fabulous mustache',
+        image: 'google.com/awesomemustache.jpg',
+        description: 'its pretty great',
+        quantity: 30,
+        price: 57.04
     };
 
-    const review2 = {
-        comment: 'I would buy 5 if I could',
-        rating: 5,
-        title: 'Joes exquisite mustache'
-    };
+    before(
+        () => {
+            return Product.create(product1)
+            .then(createdProduct => {
+
+                theProduct = createdProduct;
+
+                review1 = {
+                    comment: 'No words',
+                    rating: 5,
+                    title: 'Andrews fabulous mustache',
+                    product_id: createdProduct.id,
+                    author_id: 1
+                };
+
+                review2 = {
+                    comment: 'I would buy 5 if I could',
+                    rating: 5,
+                    title: 'Joes exquisite mustache'
+                };
+            });
+        }
+    );
 
 	it('POST a new review(1)', () =>
 		request(app)
@@ -39,6 +62,20 @@ describe('/api/reviews', () => {
             .get(`/api/reviews`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(2))
+    );
+
+    it('GET all reviews for a user...confirming we have 1 reviews', () =>
+        request(app)
+            .get(`/api/reviews/user/1`)
+            .expect(200)
+            .then(res => expect(res.body.length).to.equal(1))
+    );
+
+    it('GET all reviews for a product...confirming we have 1 reviews', () =>
+        request(app)
+            .get(`/api/reviews/product/${theProduct.id}`)
+            .expect(200)
+            .then(res => expect(res.body.length).to.equal(1))
     );
 
     it('Can PUT reviews(1)', () =>

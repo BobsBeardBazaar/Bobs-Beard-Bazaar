@@ -39,12 +39,7 @@ Router.delete('/:productId', (req, res, next) => {
 
 //PUT (update) a product
 Router.put('/:productId', (req, res, next) => {
-	Product.update({ name: req.body.name,
-		image: req.body.image,
-		description: req.body.description,
-		quantity: req.body.quantity,
-		price: req.body.price }, {
-
+	Product.update(req.body, {
 		where: {
 			id: req.params.productId,
 		},
