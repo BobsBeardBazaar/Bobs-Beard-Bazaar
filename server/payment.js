@@ -28,7 +28,7 @@ module.exports = require('express').Router()
 				id: req.params.id
 			}
 		})
-		.then(payment => res.sendStatus(204))
+		.then(deletedPaymentsNum => res.status(200).json(deletedPaymentsNum))
 		.catch(next))
 
 	// updates payment method

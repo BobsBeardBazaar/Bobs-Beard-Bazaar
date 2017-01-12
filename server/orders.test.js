@@ -23,7 +23,7 @@ describe('/api/orders', () => {
     )
 
     //to test get all orders for one user, we are posting one more order with user_id=1
-    it('POST a new order (correctly, passing in a string value)', () =>
+    it('POST a new second order (correctly, passing in a string value)', () =>
         request(app)
             .post('/api/orders')
             .send({
@@ -40,7 +40,7 @@ describe('/api/orders', () => {
     )
 
     //to test get all the orders in database posting one more order
-    it('POST a new order (correctly, passing in a string value)', () =>
+    it('POST a new third order (correctly, passing in a string value)', () =>
         request(app)
             .post('/api/orders')
             .send({
@@ -103,7 +103,8 @@ describe('/api/orders', () => {
     it('DELETE /:orderId', () =>
         request(app)
             .delete(`/api/orders/1`)
-            .expect(204)
+            .expect(200)
+            .then(res => expect(res.body).to.equal(1))
     )
 
 

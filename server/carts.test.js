@@ -51,7 +51,8 @@ describe('/api/carts', () => {
     it('DELETE /:cartId', () =>
         request(app)
             .delete(`/api/carts/1`)
-            .expect(204)
+            .expect(200)
+            .then(res => expect(res.body).to.equal(1))
     )
 
 

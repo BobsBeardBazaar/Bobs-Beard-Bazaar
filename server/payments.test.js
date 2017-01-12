@@ -60,7 +60,8 @@ describe('/api/payments', () => {
     it('DELETE /:paymentId', () =>
         request(app)
             .delete(`/api/payments/1`)
-            .expect(204)
+            .expect(200)
+            .then(res => expect(res.body).to.equal(1))
     )
 
 

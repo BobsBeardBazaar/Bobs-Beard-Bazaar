@@ -29,7 +29,7 @@ module.exports = require('express').Router()
 				id: req.params.cartId
 			}
 		})
-		.then(cart => res.sendStatus(204))
+		.then(deletedCartsNum => res.status(200).json(deletedCartsNum))
 		.catch(next))
 
 	.put('/:cartId', (req, res, next) =>

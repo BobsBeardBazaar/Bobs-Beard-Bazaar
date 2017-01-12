@@ -41,7 +41,7 @@ module.exports = require('express').Router()
 				id: req.params.addressId
 			}
 		})
-		.then(address => res.sendStatus(204))
+		.then(deletedAddressNum => res.status(200).json(deletedAddressNum))
 		.catch(next))
 
 		//localhost:1337/api/addresses/{addressId}
