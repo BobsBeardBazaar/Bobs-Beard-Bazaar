@@ -10,10 +10,10 @@ describe('/api/payments', () => {
         .post('/api/payments')
         .send({
           name: 'YooNah',
-          cardName: 'Master',
-          cardNumber: '1234567891234567',
+          cardName: 'Visa',
+          cardNumber: '4242424242424242',
           expirationDate: 1012,
-          securityCode: 111,
+          securityCode: 123,
           user_id: 2
         })
         .expect(201)
@@ -26,10 +26,10 @@ describe('/api/payments', () => {
         .then(res => expect(res.body[0]).to.contain(
                 {
                     name: 'YooNah',
-                    cardName: 'Master',
-                    cardNumber: '1234567891234567',
+                    cardName: 'Visa',
+                    cardNumber: '4242424242424242',
                     expirationDate: 1012,
-                    securityCode: 111,
+                    securityCode: 123,
                     user_id: 2
                 }
             ))
@@ -40,8 +40,8 @@ describe('/api/payments', () => {
         .put('/api/payments/1')
         .send({
             name: 'Surabhi',
-            cardName: 'Master',
-            cardNumber: '1234567891234567',
+            cardName: 'Visa',
+            cardNumber: '4242424242424242',
             expirationDate: 1012,
             securityCode: 111,
             user_id: 2
@@ -49,8 +49,8 @@ describe('/api/payments', () => {
         .expect(200)
         .then(res => expect(res.body).to.contain({
             name: 'Surabhi',
-            cardName: 'Master',
-            cardNumber: '1234567891234567',
+            cardName: 'Visa',
+            cardNumber: '4242424242424242',
             expirationDate: 1012,
             securityCode: 111,
             user_id: 2
