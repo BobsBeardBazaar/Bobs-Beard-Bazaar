@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const db = require('APP/db/models');
 const Category = db.Category;
 
+// OB/DYS: below you've got an instance, so the capital letter is against the grain a bit
 const Router = require('express').Router();
 
 

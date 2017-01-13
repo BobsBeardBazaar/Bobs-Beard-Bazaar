@@ -6,6 +6,7 @@ const app = require('../start');
 
 describe('/api/addresses', () => {
 
+    // OB/DYS: instead of relying on POST to work (for GET spec), just create direclty in the database (via the ORM), e.g. in a `before`/`beforeEach` block, so that your tests are more independent
     it('POST a new address (correctly, passing in a string value)', () =>
         request(app)
             .post('/api/addresses')

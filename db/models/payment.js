@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize')
 const db = require('APP/db')
 
+// OB/DYS: if you use stripe, you might be able to squash this model into dust
 const Payment = db.define('payments', {
 	name: {
 		type: Sequelize.STRING, //name on the card

@@ -13,6 +13,8 @@ Router.get('/', (req, res, next) => {
 });
 
 // GET /api/reviews/product/:productId - gets all the reviews for a certain product
+// OB/DYS: maybe more standard /api/products/:productId/reviews
+// OB/DYS: maybe more standard /api/reviews?productId=:productId (using the query string)
 Router.get('/product/:productId', (req, res, next) => {
 	Review.findAll({
         where: {

@@ -3,6 +3,7 @@ const Product = db.Product;
 
 const Router = require('express').Router();
 
+// OB/DYS: applies to all routes - don't forget about authorization / access control
 
 //GET all the Products
 Router.get('/', (req, res, next) => {
@@ -39,7 +40,7 @@ Router.delete('/:productId', (req, res, next) => {
 
 //PUT (update) a product
 Router.put('/:productId', (req, res, next) => {
-	Product.update(req.body, {
+	Product.update(req.body, { // OB/DYS: wathc out for open-ended updating (this applies more places, too)
 		where: {
 			id: req.params.productId,
 		},

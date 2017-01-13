@@ -3,6 +3,7 @@
 const db = require('APP/db')
 const Address = db.model('addresses')
 
+// OB/DYS: consider moving address logic INSIDE other routers
 
 module.exports = require('express').Router()
 	//localhost:1337/api/addresses/{number}
@@ -19,6 +20,7 @@ module.exports = require('express').Router()
 	//we may not actually need this route, but we put it here just in case
 	//get one address for one user
 	//localhost:1337/api/addresses/{userId}/{addressId}
+	// OB/DYS: consider flipping this on its head: /api/users/{userId}/addresses (more standard, more RESTful)
 	.get('/:userId/:addressId', (req, res, next) =>
 		Address.findById(req.params.addressId)
 		.then(addresses => res.json(addresses))
