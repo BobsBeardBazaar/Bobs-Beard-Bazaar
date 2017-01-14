@@ -66,14 +66,14 @@ describe('/api/reviews', () => {
 
     it('GET all reviews for a user...confirming we have 1 reviews', () =>
         request(app)
-            .get(`/api/reviews/?userId=1`)
+            .get(`/api/reviews?userId=1`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(1))
     );
 
     it('GET all reviews for a product...confirming we have 1 reviews', () =>
         request(app)
-            .get(`/api/reviews/?productId=${theProduct.id}`)
+            .get(`/api/reviews?productId=${theProduct.id}`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(1))
     );
