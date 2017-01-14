@@ -39,9 +39,4 @@ Order.belongsTo(User);
 Order.belongsToMany(Product, {through: OrderProducts});
 Product.belongsToMany(Order, {through: OrderProducts});
 
-Order.findById(1)
-.then(result =>
-  {return result.getTotal()})
-.then(finalResult => console.log('FINAL RESULT', finalResult));
-
 module.exports = {User, Product, Review, Category, Address, Order}
