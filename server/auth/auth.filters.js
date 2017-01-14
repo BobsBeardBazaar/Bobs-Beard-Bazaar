@@ -13,7 +13,8 @@ const selfOnly = action => (req, res, next) => {
 }
 
 const forbidden = message => (req, res, next) => {
-  res.status(403).send(message)
+    if (req.user.isAdmin) next(); // If they are an admin, proceed
+    else res.status(403).send(message);
 }
 
 module.exports = {mustBeLoggedIn, selfOnly, forbidden,}
