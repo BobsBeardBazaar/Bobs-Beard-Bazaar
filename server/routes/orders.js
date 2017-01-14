@@ -49,6 +49,7 @@ module.exports = require('express').Router()
     })
 
 	.post('/', (req, res, next) =>
+        // TODO: add authorization
 		Order.create(req.body)
 		.then(cart => res.status(201).json(cart))
 		.catch(next))
@@ -59,6 +60,7 @@ module.exports = require('express').Router()
 		.catch(next))
 
 	.put('/:orderId', (req, res, next) =>
+        // TODO: add authorization
 		Order.update(req.body, {
 			where: {
 				id: req.params.orderId
