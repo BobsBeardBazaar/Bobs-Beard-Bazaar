@@ -16,7 +16,7 @@ api
 
 // Send along any errors
 api.use((err, req, res, next) => {
-  res.status(500).send(err)
+  res.status(err.status || 500).send(err.message || err)
 });
 
 // No routes matched? 404.
