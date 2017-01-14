@@ -66,14 +66,14 @@ describe('/api/reviews', () => {
 
     it('GET all reviews for a user...confirming we have 1 reviews', () =>
         request(app)
-            .get(`/api/reviews/user/1`)
+            .get(`/api/reviews?userId=1`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(1))
     );
 
     it('GET all reviews for a product...confirming we have 1 reviews', () =>
         request(app)
-            .get(`/api/reviews/product/${theProduct.id}`)
+            .get(`/api/reviews?productId=${theProduct.id}`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(1))
     );
@@ -87,6 +87,17 @@ describe('/api/reviews', () => {
             })
             .expect(200)
             .then(res => expect(res.body.title).to.equal('Andrews updated mustache'))
+    );
+
+    it('PUT reviews that does not exist', () =>
+        request(app)
+            .put('/api/reviews/9982374')
+            .send({
+                title: 'Andrews updated mustache',
+                rating: 0
+            })
+            .expect(404)
+            .then(res => expect(res.text).to.equal('review not found'))
     );
 
     it('Can DELETE review(1)', () =>
