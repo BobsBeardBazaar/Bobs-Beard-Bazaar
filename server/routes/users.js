@@ -38,6 +38,29 @@ module.exports = require('express').Router()
 		.catch(next)
     )
 
+    // PUT - /users/:userId - Updates a certain user
+    .put('/:userId',
+    selfOrAdminOnly('update a user'),
+    // Sanitize the input if the user is not an admin
+    (req, res, next) => {
+        if (!req.user.isAdmin) {
+            if (req.body.isAdmin) delete req.body.isAdmin;
+            next();
+        } else { next(); } // If admin, let the request pass through
+    },
+    (req, res, next) => {
+        User.update(req.body, {
+            where: {
+                id: req.params.userId
+            },
+            returning: true
+        })
+        .then(result => {
+            if (result) res.json(result[1][0]);
+            else next(createError(404, 'user not found'));
+        });
+    })
+
     // GET - /users/:userId - Gets a certain user
 	.get('/:userId', selfOrAdminOnly('get user info'), (req, res, next) =>
         res.json(req._user)

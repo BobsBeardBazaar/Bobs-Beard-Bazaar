@@ -19,7 +19,7 @@ const forbidden = message => (req, res, next) => {
 
 const selfOrAdminOnly = action => (req, res, next) => {
     // Only allow if the user is an admin or the user themself
-    if (req.user && req.params && (req.user.isAdmin || (req.params.userId === req.user.id))) {
+    if (req.user && req.params && (req.user.isAdmin || (+req.params.userId === +req.user.id))) {
         next();
     } else {
         res.status(401).send(`You can only perform: '${action}' if you are the user or an admin`);
