@@ -103,33 +103,14 @@ const orderProductsToAdd = [
     }
 ];
 
+// Helper function to insert seed data
 function seedFn(seedData, model) {
     return () => db.Promise.map(seedData, data => {
         return db.model(model).create(data);
     });
 }
 
-const seedUsers = () => db.Promise.map(usersToAdd,
-    user => db.model('users').create(user));
-
-const seedCategories = () => db.Promise.map(categoriesToAdd,
-    category => db.model('category').create(category));
-
-const seedProducts = () => db.Promise.map(productsToAdd,
-    product => db.model('products').create(product));
-
-const seedReviews = () => db.Promise.map(reviewsToAdd,
-    review => db.model('review').create(review));
-
-const seedAddresses = () => db.Promise.map(addressesToAdd,
-    address => db.model('addresses').create(address));
-
-const seedOrders = () => db.Promise.map(ordersToAdd,
-    order => db.model('orders').create(order));
-
-const seedOrderProducts = () => db.Promise.map(orderProductsToAdd,
-    orderProduct => db.model('orderProducts').create(orderProduct));
-
+// Sync the seed data
 db.didSync
   .then(() => db.sync({force: true}))
   .then(seedFn(usersToAdd, 'category'))
