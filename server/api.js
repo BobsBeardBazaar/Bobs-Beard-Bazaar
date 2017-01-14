@@ -12,7 +12,7 @@ api
   .use('/products', require('./routes/products'))
   .use('/reviews', require('./routes/reviews'))
 
-// Send along any errors
+// Send along any errors1
 api.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || err)
 });
