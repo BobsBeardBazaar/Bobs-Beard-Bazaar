@@ -5,7 +5,7 @@ const User = db.model('users');
 const Address = db.model('addresses');
 const { createError } = require('APP/server/utils');
 
-const { mustBeLoggedIn, forbidden } = require('../auth/auth.filters');
+const { mustBeLoggedIn, forbidden, selfOrAdminOnly } = require('../auth/auth.filters');
 
 module.exports = require('express').Router()
 
@@ -31,15 +31,15 @@ module.exports = require('express').Router()
 		.catch(next)
     )
 
-    // POST - /users/ - Updates a user
+    // POST - /users/ - Creates a user
 	.post('/', (req, res, next) =>
 		User.create(req.body)
 		.then(user => res.status(201).json(user))
 		.catch(next)
     )
 
-    // GET - /users/:id - Gets a certain user
-	.get('/:userId', mustBeLoggedIn, (req, res, next) =>
+    // GET - /users/:userId - Gets a certain user
+	.get('/:userId', selfOrAdminOnly('get user info'), (req, res, next) =>
         res.json(req._user)
     )
 
