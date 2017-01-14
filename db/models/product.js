@@ -13,21 +13,32 @@ const Product = db.define('products', {
     },
   image: {
     type: Sequelize.STRING,
-    defaultValue: mustache //default photo imported from public folder
+    defaultValue: mustache, //default photo imported from public folder
+    validate: {
+      isUrl: true
+    }
   },
 	description: {
     type: Sequelize.TEXT,
-    defaultValue: 'No description'
+    defaultValue: null
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0 //"Out of stock"/In stock will be handled on frontend
+    defaultValue: 0, //"Out of stock"/In stock will be handled on frontend
+    validate: {
+      min: 0,
+      max: 100
+    }
   },
   price: {
     type: Sequelize.DOUBLE,
     allowNull: false,
-    defaultValue: 0
+    validate: {
+      min: 0
+    }
   }
+}, {
+  indexes: [{fields: ['name'], unique: true}]
 });
 
 module.exports = Product;
