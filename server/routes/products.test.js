@@ -55,6 +55,16 @@ describe('/api/products', () => {
             .then(res => expect(res.body.name).to.equal('Andrews updated mustache'))
     );
 
+    it('PUT an product that does not exist', () =>
+        request(app)
+            .put('/api/products/983120')
+            .send({
+                name: 'Andrews updated mustache'
+            })
+            .expect(404)
+            .then(res => expect(res.text).to.equal('product not found'))
+    );
+
     it('Can DELETE product(1)', () =>
         request(app)
             .delete('/api/products/1')
