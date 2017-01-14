@@ -10,6 +10,13 @@ const alice = {
   password: '12345'
 };
 
+const bert = {
+  name: 'Bert',
+  username: 'bert@ilovebeards.edu',
+  password: '12345',
+  isAdmin: false
+};
+
 // The admin
 const gertrude = {
   name: 'Gertude',
@@ -34,6 +41,15 @@ describe('/api/auth', () => {
         )
         .then((createdUser) => {
             alice.id = createdUser.id;
+            return User.create({
+                name: bert.name,
+                email: bert.username,
+                password: bert.password,
+                isAdmin: bert.isAdmin
+            });
+        })
+        .then((createdUser) => {
+            bert.id = createdUser.id;
             return User.create({
                 name: gertrude.name,
                 email: gertrude.username,
@@ -100,6 +116,18 @@ describe('/api/auth', () => {
             .expect(200)
             .then(res => expect(res.body).to.contain({
                 name: 'Alice in Wonderland'
+            }));
+        });
+
+        it('Can give others admin status (Bert)', () => {
+            agent.put(`/api/users/${bert.id}`)
+            .send({
+                isAdmin: true
+            })
+            .expect(200)
+            .then(res => expect(res.body).to.contain({
+                name: 'Bert',
+                isAdmin: true
             }));
         });
 

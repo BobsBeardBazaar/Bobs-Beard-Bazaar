@@ -48,6 +48,7 @@ module.exports = require('express').Router()
             next();
         } else { next(); } // If admin, let the request pass through
     },
+    // Update the user
     (req, res, next) => {
         User.update(req.body, {
             where: {
@@ -56,8 +57,8 @@ module.exports = require('express').Router()
             returning: true
         })
         .then(result => {
-            if (result) res.json(result[1][0]);
-            else next(createError(404, 'user not found'));
+            if (result) res.json(result[1][0]); // Return the updated user settings
+            else next(createError(404, 'user not found')); // If no user, error out
         });
     })
 
