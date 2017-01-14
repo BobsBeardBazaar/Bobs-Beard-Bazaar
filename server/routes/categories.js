@@ -3,12 +3,12 @@ const Sequelize = require('sequelize');
 const db = require('APP/db/models');
 const Category = db.Category;
 
-const Router = require('express').Router();
+const router = require('express').Router();
 
 
 //GET all Category
 //api/Category/
-Router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	Category.findAll({})
 	.then((allCategories) => {
 		res.json(allCategories);
@@ -18,7 +18,7 @@ Router.get('/', (req, res, next) => {
 
 //POST a new Category
 //api/Category/
-Router.post('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	Category.create({name : req.body.name})
 	.then((newCategory) => {
 		res.status(201).json(newCategory);
@@ -28,7 +28,7 @@ Router.post('/', (req, res, next) => {
 
 //DELETE a Category
 //api/Category/:categoryId
-Router.delete('/:categoryId', (req, res, next) => {
+router.delete('/:categoryId', (req, res, next) => {
 	Category.destroy({
 		where: {
 			id: req.params.categoryId
@@ -40,4 +40,4 @@ Router.delete('/:categoryId', (req, res, next) => {
 	.catch(next);
 });
 
-module.exports = Router;
+module.exports = router;

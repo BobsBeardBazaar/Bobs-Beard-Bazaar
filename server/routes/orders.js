@@ -1,15 +1,29 @@
-'use strict'
+'use strict';
 
-const db = require('APP/db')
-const Order = db.model('orders')
+const db = require('APP/db');
+const Order = db.model('orders');
+const { createError } = require('APP/server/utils');
 
 
 module.exports = require('express').Router()
+
+    .param('orderId', (req, res, next, orderId) => {
+        Order.findById(orderId)
+        .then(order => {
+            if (!order) {
+                next(createError(404, 'order not found'));
+                return;
+            }
+
+            req._order = order;
+            next();
+        });
+    })
+
 	//GET one order
 	.get('/:orderId', (req, res, next) =>
-		Order.findById(req.params.orderId)
-		.then(order => res.json(order))
-		.catch(next))
+        res.json(req._order)
+    )
 
 	//GET all the orders of this user
 	//localhost:1337/api/orders/user/:userId
