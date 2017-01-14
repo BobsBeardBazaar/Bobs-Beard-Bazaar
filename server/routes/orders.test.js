@@ -9,13 +9,11 @@ describe('/api/orders', () => {
             .post('/api/orders')
             .send({
                 status: 'created',
-                total: 100,
                 user_id: 1
             })
             .expect(201)
             .then(res => expect(res.body).to.contain({
                 status: 'created',
-                total: 100,
                 user_id: 1
             }))
     );
@@ -26,13 +24,11 @@ describe('/api/orders', () => {
             .post('/api/orders')
             .send({
                 status: 'created',
-                total: 200,
                 user_id: 1
             })
             .expect(201)
             .then(res => expect(res.body).to.contain({
                 status: 'created',
-                total: 200,
                 user_id: 1
             }))
     );
@@ -43,13 +39,11 @@ describe('/api/orders', () => {
             .post('/api/orders')
             .send({
                 status: 'created',
-                total: 300,
                 user_id: 2
             })
             .expect(201)
             .then(res => expect(res.body).to.contain({
                 status: 'created',
-                total: 300,
                 user_id: 2
             }))
     );
@@ -61,7 +55,6 @@ describe('/api/orders', () => {
             .then(res => expect(res.body).to.contain(
                 {
                     status: 'created',
-                    total: 100,
                     user_id: 1
                 }
             ))
@@ -86,13 +79,11 @@ describe('/api/orders', () => {
             .put('/api/orders/1')
             .send({
                 status: 'shipped',
-                total: 1000,
                 user_id: 1
             })
             .expect(200)
             .then(res => expect(res.body).to.contain({
                 status: 'shipped',
-                total: 1000,
                 user_id: 1
             }))
     );
