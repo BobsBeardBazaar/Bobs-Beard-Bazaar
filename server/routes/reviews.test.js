@@ -83,7 +83,7 @@ describe('/api/reviews', () => {
             .put('/api/reviews/1')
             .send({
                 title: 'Andrews updated mustache',
-                rating: 0
+                rating: 1
             })
             .expect(200)
             .then(res => expect(res.body.title).to.equal('Andrews updated mustache'))
@@ -94,7 +94,7 @@ describe('/api/reviews', () => {
             .put('/api/reviews/9982374')
             .send({
                 title: 'Andrews updated mustache',
-                rating: 0
+                rating: 1
             })
             .expect(404)
             .then(res => expect(res.text).to.equal('review not found'))
