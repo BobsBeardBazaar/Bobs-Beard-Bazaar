@@ -17,6 +17,13 @@ const bert = {
   isAdmin: false
 };
 
+const lars = {
+  name: 'Lars',
+  username: 'lars@ihearthipsterbeards.io',
+  password: '12345',
+  isAdmin: false
+};
+
 // The admin
 const gertrude = {
   name: 'Gertude',
@@ -50,6 +57,15 @@ describe('/api/auth', () => {
         })
         .then((createdUser) => {
             bert.id = createdUser.id;
+            return User.create({
+                name: lars.name,
+                email: lars.username,
+                password: lars.password,
+                isAdmin: lars.isAdmin
+            });
+        })
+        .then((createdUser) => {
+            lars.id = createdUser.id;
             return User.create({
                 name: gertrude.name,
                 email: gertrude.username,
@@ -131,6 +147,11 @@ describe('/api/auth', () => {
             }));
         });
 
+        // TODO: doesn't seem to work, not sure what's wrong
+        it('Can delete a user (Lars)', () => {
+            agent.delete(`/api/users/${lars.id}`)
+            .expect(204);
+        });
   });
 
   describe('GET /whoami', () => {
@@ -171,6 +192,14 @@ describe('/api/auth', () => {
                   name: 'THE Alice in Wonderland',
                   isAdmin: false
               }));
+          });
+
+          it('cannot adjust other user settings', () => {
+              agent.put(`/api/users/${bert.id}`)
+              .send({
+                  name: 'Bert the Gert',
+              })
+              .expect(401);
           });
   });
 
