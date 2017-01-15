@@ -16,7 +16,7 @@ const Navbar = ({ user, logout }) => {
                     { user && <li id="nav-username">{ `Welcome, ${user.name}` }</li> }
                     <li><Link to="/products">Products</Link></li>
                     { user && <li><Link to="" onClick={ logout }>Logout</Link></li> }
-                    { user && <li><Link to="" onClick={ logout }><i className="material-icons white-text">settings</i></Link></li> }
+                    { user && <li><Link to=""><i className="material-icons white-text">settings</i></Link></li> }
                     { !user && <li><Link to="/login">Login</Link></li> }
                 </ul>
 
