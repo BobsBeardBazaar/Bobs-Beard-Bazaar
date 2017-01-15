@@ -18,7 +18,7 @@ const Product = ({ product }) => {
                     </div>
                     <div className="col m6 s12">
                         <h5>Quantity: { product.quantity }</h5>
-                        <h5>Price: { product.price }</h5>
+                        <h5>Price: ${ product.price }</h5>
                         <h5>Description:</h5>
                         <p>{ product.description }</p>
                         <a className="waves-effect waves-light btn"><i className="material-icons left">shopping_cart</i>Add to cart</a>

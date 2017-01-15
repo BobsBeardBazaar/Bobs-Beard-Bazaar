@@ -6,12 +6,16 @@ import { Link } from 'react-router';
 
 const Review = ({ review }) => {
 
+    const createStars = Array(review.rating).map(el => (<i className="material-icons">star</i>))
+
     return (
             <div className="row">
                 <div className="col s12">
                     <div className="card grey lighten-4">
                         <div className="card-content black-text">
-                            <span className="card-title">{ review.title } - Rating: { review.rating }</span>
+                            <span className="card-title">{ review.title } - Rating: {
+                                    Array(review.rating).fill('filler').map((el, idx) => (<i className="material-icons" key={idx}>star</i>))
+                                }</span>
                             <p>{ review.comment }</p>
                         </div>
                         <div className="card-action black-text">
@@ -25,13 +29,3 @@ const Review = ({ review }) => {
 };
 
 export default Review;
-/* -----------------    CONTAINER     ------------------ */
-
-// const mapProps = (state, ownProps) => {
-//     return {
-//         review: state.products.selected.reviews[ownProps.reviewIdx]
-//     };
-// };
-// const mapDispatch = null;
-//
-// export default connect(mapProps, mapDispatch)(Review);
