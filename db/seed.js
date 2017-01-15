@@ -1,4 +1,4 @@
-const db = require('APP/db')
+const db = require('APP/db');
 
 const usersToAdd = [
     {name: 'The Admin', email: 'god@example.com', password: '1234', isAdmin: true},
@@ -113,9 +113,9 @@ function seedFn(seedData, model) {
 // Sync the seed data
 db.didSync
   .then(() => db.sync({force: true}))
-  .then(seedFn(usersToAdd, 'category'))
+  .then(seedFn(usersToAdd, 'users'))
   .then(users => console.log(`Seeded ${users.length} users OK`))
-  .then(seedFn(categoriesToAdd, 'users'))
+  .then(seedFn(categoriesToAdd, 'category'))
   .then(categories => console.log(`Seeded ${categories.length} categories OK`))
   .then(seedFn(productsToAdd, 'products'))
   .then(products => console.log(`Seeded ${products.length} products OK`))

@@ -1,20 +1,41 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
-export const Login = ({ login }) => (
-  <form onSubmit={evt => {
-    evt.preventDefault()
-    login(evt.target.username.value, evt.target.password.value)
-  } }>
-    <input name="username" />
-    <input name="password" type="password" />
-    <input type="submit" value="Login" />
-  </form>
-)
+import {login} from 'APP/app/reducers/auth';
 
-import {login} from 'APP/app/reducers/auth'
-import {connect} from 'react-redux'
+/* -----------------    COMPONENT     ------------------ */
 
-export default connect (
-  state => ({}),
-  {login},
-) (Login)
+const Login = ({ login }) => {
+
+    return (
+        <div className="container">
+            <div className="row">
+                <div className="col s6 offset-s3 center">
+                    <div className="card grey lighten-5">
+                        <div className="card-content" id="mainSet">
+                            <p className="card-title">Please sign in:</p>
+                            <form onSubmit={evt => {
+                                    evt.preventDefault()
+                                    login(evt.target.username.value, evt.target.password.value)
+                                }}>
+                                <label htmlFor="username" className="left">Username</label>
+                                <input placeholder="bob@example.com" name="username" />
+                                <label htmlFor="password" className="left">Password</label>
+                                <input placeholder="Password" name="password" type="password" />
+                                <input className="waves-effect waves-light btn" type="submit" value="Login" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+/* -----------------    CONTAINER     ------------------ */
+
+const mapProps = state => ({});
+const mapDispatch = { login };
+
+export default connect(mapProps, mapDispatch)(Login);

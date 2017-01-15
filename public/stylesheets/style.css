@@ -1,0 +1,28 @@
+/* General */
+#main-content-anchor {
+  display: flex;
+  min-height: calc(100vh - 240px - 64px);
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Navbar */
+#logo-container img {
+    margin-right: 1.1rem
+}
+
+/* Landing page */
+#index-banner {
+    background-image: url("/img/beardSplash.jpg");
+    background-size: cover;
+    height: 800px;
+    padding-top: 100px;
+}
+
+/* Footer */
+footer.page-footer {
+    margin-top: 0px;
+}
