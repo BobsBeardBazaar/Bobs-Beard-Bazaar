@@ -14,7 +14,7 @@ const Navbar = ({ user, logout }) => {
                 <Link id="logo-container" to="/" className="brand-logo"><img src="/img/beardLogo.png" width="50px" />Bob's Beard Bazaar</Link>
                 <ul className="right hide-on-med-and-down">
                     { user && <li id="nav-username">{ `Welcome, ${user.name}` }</li> }
-                    <li><Link to="">Products</Link></li>
+                    <li><Link to="/products">Products</Link></li>
                     { user && <li><Link to="" onClick={ logout }>Logout</Link></li> }
                     { user && <li><Link to="" onClick={ logout }><i className="material-icons white-text">settings</i></Link></li> }
                     { !user && <li><Link to="/login">Login</Link></li> }

@@ -13,7 +13,7 @@ const categoriesToAdd = [
 const productsToAdd = [
     {
         name: `Joe's fabulous mustache`,
-        image: 'www.google.com',
+        image: 'http://localhost:1337/img/mustacheDefault.jpg',
         description: 'There are no words to explain',
         quantity: '3',
         price: '87.12',
@@ -21,7 +21,7 @@ const productsToAdd = [
     },
     {
         name: `Surabhi's extravagant beard`,
-        image: 'www.google.com',
+        image: 'http://localhost:1337/img/mustacheDefault.jpg',
         description: 'This is the beard you were supposed to have',
         quantity: '87',
         price: '100.85',
@@ -29,7 +29,7 @@ const productsToAdd = [
     },
     {
         name: `The Yoo-Nah-Brow`,
-        image: 'www.google.com',
+        image: 'http://localhost:1337/img/mustacheDefault.jpg',
         description: 'If you look up eyebrow in the dictionary, this pops up. Just buy it.',
         quantity: '1',
         price: '870.12',
