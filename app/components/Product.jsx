@@ -7,7 +7,7 @@ import Review from './Review';
 /* -----------------    COMPONENT     ------------------ */
 
 const Product = ({ product }) => {
-    console.log('this is the product.review.length', product.reviews.length, product.reviews)
+
     return (
         <div className="container">
             <div className="row">
@@ -19,13 +19,15 @@ const Product = ({ product }) => {
                     <div className="col m6 s12">
                         <h5>Quantity: { product.quantity }</h5>
                         <h5>Price: { product.price }</h5>
+                        <h5>Description:</h5>
+                        <p>{ product.description }</p>
                         <a className="waves-effect waves-light btn"><i className="material-icons left">shopping_cart</i>Add to cart</a>
                     </div>
                 </div>
                 <div className="col s12">
                     <h4>Reviews</h4>
                     { product.reviews.length ? product.reviews.map((review, idx) => {
-                        return ( <Review reviewIdx={idx}/> );
+                        return ( <Review review={review} key={ idx }/> );
                     }) : <p>No current reviews</p> }
                 </div>
             </div>

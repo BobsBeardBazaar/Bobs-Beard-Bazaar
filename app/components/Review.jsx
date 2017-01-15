@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 /* -----------------    COMPONENT     ------------------ */
 
-const SamplePage = ({ review }) => {
+const Review = ({ review }) => {
 
     return (
             <div className="row">
@@ -24,13 +24,14 @@ const SamplePage = ({ review }) => {
     );
 };
 
+export default Review;
 /* -----------------    CONTAINER     ------------------ */
 
-const mapProps = (state, ownProps) => {
-    return {
-        review: state.products.selected.reviews[ownProps.reviewIdx]
-    };
-};
-const mapDispatch = null;
-
-export default connect(mapProps, mapDispatch)(SamplePage);
+// const mapProps = (state, ownProps) => {
+//     return {
+//         review: state.products.selected.reviews[ownProps.reviewIdx]
+//     };
+// };
+// const mapDispatch = null;
+//
+// export default connect(mapProps, mapDispatch)(Review);
