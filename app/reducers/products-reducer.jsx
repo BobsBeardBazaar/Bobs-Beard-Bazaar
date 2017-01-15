@@ -6,7 +6,9 @@ import {
 
 
 const initialProductsState = {
-  selected: {},
+  selected: {
+      reviews: []
+  },
   list: []
 };
 

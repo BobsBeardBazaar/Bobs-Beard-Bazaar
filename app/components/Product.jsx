@@ -2,17 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import Review from './Review';
+
 /* -----------------    COMPONENT     ------------------ */
 
 const Product = ({ product }) => {
-
+    console.log('this is the product.review.length', product.reviews.length, product.reviews)
     return (
         <div className="container">
             <div className="row">
-                <img height="100" width="100" src={ product.image }/>
-                <label>Name: </label>{ product.name }<br />
-                <label>Quantity: </label>{product.quantity}<br />
-                <label>Price: </label> ${product.price}
+                <h3>{ product.name }</h3>
+                <div>
+                    <div className="col m6 s12">
+                        <img height="100%" width="100%" src={ product.image }/><br />
+                    </div>
+                    <div className="col m6 s12">
+                        <h5>Quantity: { product.quantity }</h5>
+                        <h5>Price: { product.price }</h5>
+                        <a className="waves-effect waves-light btn"><i className="material-icons left">shopping_cart</i>Add to cart</a>
+                    </div>
+                </div>
+                <div className="col s12">
+                    <h4>Reviews</h4>
+                    { product.reviews.length ? product.reviews.map((review, idx) => {
+                        return ( <Review reviewIdx={idx}/> );
+                    }) : <p>No current reviews</p> }
+                </div>
             </div>
         </div>
     );

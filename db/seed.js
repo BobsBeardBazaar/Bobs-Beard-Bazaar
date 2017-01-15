@@ -46,6 +46,20 @@ const reviewsToAdd = [
         author_id: 2
     },
     {
+        comment: `My wife didn't recognize me when I walked into the door.`,
+        rating: 5,
+        title: `The mustache gods are watching over this one.`,
+        product_id: 1,
+        author_id: 2
+    },
+    {
+        comment: `I no longer get comments like "can I have your ID sir?", or "have you hit puberty yet?".`,
+        rating: 5,
+        title: `I look 10 years older, and that's a good thing.`,
+        product_id: 1,
+        author_id: 2
+    },
+    {
         comment: `I would give this 5 stars if the installation was a little more clear. Overall though I am very pleased`,
         rating: 4,
         title: `I wish I had 3`,
