@@ -11,6 +11,7 @@ const Home = () => {
             <div className="row">
                 <div className="col m5 s10 offset-m7 offset-s2">
                         <h1 className="white-text">Bring meaning to your life. Buy facial hair.</h1>
+                        <Link className="waves-effect waves-light btn btn-large purple darken-2" to="/login">Get Started</Link>
                 </div>
             </div>
         </div>
