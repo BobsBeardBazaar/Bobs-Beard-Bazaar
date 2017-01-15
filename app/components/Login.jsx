@@ -19,10 +19,10 @@ const Login = ({ login }) => {
                                     evt.preventDefault()
                                     login(evt.target.username.value, evt.target.password.value)
                                 }}>
-                                <label htmlFor="username" className="left">Username</label>
                                 <input placeholder="bob@example.com" name="username" />
-                                <label htmlFor="password" className="left">Password</label>
+                                <label htmlFor="username" className="left">Username</label>
                                 <input placeholder="Password" name="password" type="password" />
+                                <label htmlFor="password" className="left">Password</label>
                                 <input className="waves-effect waves-light btn" type="submit" value="Login" />
                             </form>
                         </div>
