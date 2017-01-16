@@ -10,17 +10,16 @@ const Orders = function (props) {
               <h4>Your Orders</h4>
               <h5>Total orders: {props.orders.length}</h5>
                   {
-                    orders.map((order, idx) => {
+                    props.orders.map((order, idx) => {
                         return (
                             <div className="col s12" key={idx}>
-                                <ul class="collection">
-                                  <li class="collection-item avatar">
-                                    <img src="images/yuna.jpg" alt="" class="circle">
-                                    <span class="title">Title</span>
-                                    <p>First Line <br>
-                                       Second Line
+                                <ul className="collection">
+                                  <li className="collection-item avatar">
+  
+                                    <span className="title">{order.status}</span>
+                                    <p>First Line <br />
+                                       Second Line 
                                     </p>
-                                    <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
                                   </li>
                                 </ul>
                             </div>
