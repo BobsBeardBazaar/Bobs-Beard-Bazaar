@@ -165,7 +165,7 @@ const orderProductsToAdd = [
 
 // Helper function to insert seed data
 function seedFn(seedData, model) {
-    return () => db.Promise.map(seedData, data => {
+    return () => db.Promise.map(seedData, data => { // OB/DYS: change .map to .mapSeries to manage order
         return db.model(model).create(data);
     });
 }

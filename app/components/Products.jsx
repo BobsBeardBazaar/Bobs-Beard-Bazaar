@@ -5,6 +5,8 @@ export default function (props) {
 
   const products = props.products;
 
+  // OB/DYS: consider a product detail component (lines 19-24)
+
   return (
       <div className="container">
           <div className="row">
@@ -12,6 +14,7 @@ export default function (props) {
               <h5>Total products: {products.length}</h5>
                   {
                     products.map((product, idx) => {
+                        // OB/DYS: use id instead of idx for object key
                         return (
                             <div className="col s12 m6 l4 products-card" key={idx}>
                                 <div className="card">

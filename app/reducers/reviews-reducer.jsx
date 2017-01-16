@@ -2,13 +2,13 @@ import { RECEIVE_REVIEW } from '../constants';
 
 
 const initialReviewState = {
-  selectedReview: {
-    Author: {
+  selectedReview: { // OB/DYS: selectedReview = {loading: true}
+    Author: { // OB/DYS: lower-case author in alias
         name: ''
     },
     author_id: 1,
     comment: '',
-    rating: 1,
+    rating: 1,  // OB/DYS: different default value?
     title: ''
   }
 };

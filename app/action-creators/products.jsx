@@ -22,7 +22,7 @@ export const getProductById = productId => {
 
 export const loadProducts = function () {
   return function (dispatch) {
-    fetch('/api/products')
+    fetch('/api/products')  // OB/DYS: are you trying to make fetch happen?
     .then(function (res) {
       console.log("inside products component: ", res)
       return res.json();
@@ -32,7 +32,7 @@ export const loadProducts = function () {
       dispatch(action);
     })
     .catch(function (err) {
-      console.error(err)
+      console.error(err)    // OB/DYS: consider user notification library (react-growl, react-toast, material growl, etc)
     });
   };
 };

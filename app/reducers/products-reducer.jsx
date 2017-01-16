@@ -16,6 +16,7 @@ export default function (state = initialProductsState, action) {
 
   const newState = Object.assign({}, state);
 
+  // OB/DYS: do you need both LOAD_PRODUCTS and RECEIVE_PRODUCTS?
   switch (action.type) {
     case LOAD_PRODUCTS:
       newState.list = action.products;

@@ -14,6 +14,7 @@ const Review = ({ review }) => {
                             <span><Link to={`/reviews/${review.id}`} className="card-title">{ review.title }</Link> by { review.Author.name }</span>
                             <span className="right">
                                 Rating: {
+                                    // OB/DYS: replace with [].fill(jsx) directly
                                     Array(review.rating).fill('filler').map((el, idx) => (<i className="material-icons" key={idx}>star</i>))
                                 }
                             </span>
