@@ -27,6 +27,7 @@ const Login = ({ login }) => {
                             </form>
                         </div>
                     </div>
+                    <p>try these... username: `andrew@thebeardsarecoming.io` password: `1234`</p>
                 </div>
             </div>
         </div>

@@ -39,7 +39,7 @@ const productsToAdd = [
         name: `The Ron Swanson`,
         image: 'http://i.amz.mshcdn.com/nL12MLvTrE-zIvYLMvXozeRJjAM=/950x534/2012%2F12%2F04%2F91%2Fthemovember.bhT.jpg',
         description: '“Under my tutelage, you will grow from boys to men. From men into gladiators. And from gladiators into Swansons.” - Ron Swanson',
-        quantity: '1',
+        quantity: '0',
         price: '87000.12',
         category_id: 2
     },

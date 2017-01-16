@@ -17,11 +17,12 @@ const Product = ({ product }) => {
                         <img height="100%" width="100%" src={ product.image }/><br />
                     </div>
                     <div className="col m6 s12">
-                        <h5>Quantity: { product.quantity }</h5>
+                        { product.quantity ? <h5>Quantity: { product.quantity }</h5> : <h5 className="red-text">Out of stock</h5>}
                         <h5>Price: ${ product.price }</h5>
                         <h5>Description:</h5>
                         <p>{ product.description }</p>
-                        <a className="waves-effect waves-light btn"><i className="material-icons left">shopping_cart</i>Add to cart</a>
+                        { product.quantity ? <Link className="waves-effect waves-light btn"><i className="material-icons left">shopping_cart</i>Add to cart</Link>
+                        : <Link className="waves-effect waves-light btn"><i className="material-icons left">email</i>Notify me when available</Link> }
                     </div>
                 </div>
                 <div className="col s12">

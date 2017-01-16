@@ -13,9 +13,12 @@ const Review = ({ review }) => {
                 <div className="col s12">
                     <div className="card grey lighten-4">
                         <div className="card-content black-text">
-                            <span className="card-title">{ review.title } - Rating: {
+                            <span className="card-title">{ review.title }</span>
+                            <span className="right">
+                                Rating: {
                                     Array(review.rating).fill('filler').map((el, idx) => (<i className="material-icons" key={idx}>star</i>))
-                                }</span>
+                                }
+                            </span>
                             <p>{ review.comment }</p>
                         </div>
                         <div className="card-action black-text">

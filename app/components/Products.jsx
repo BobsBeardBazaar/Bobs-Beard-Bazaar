@@ -20,8 +20,6 @@ export default function (props) {
                                     </Link>
                                     <div className="card-content">
                                         <p className="card-title black-text"><Link className="thumbnail" to={`/products/${product.id}`}>{ product.name }</Link></p>
-                                        <label>Quantity: </label>{product.quantity}
-                                        <br />
                                         <label>Price: </label> ${product.price}
                                     </div>
                                     <div className="card-action">
