@@ -25,7 +25,7 @@ export default function (props) {
                                         <label>Price: </label> ${product.price}
                                     </div>
                                     <div className="card-action">
-                                        <Link className="thumbnail" to={`/products/${product.id}`}>
+                                        <Link className="thumbnail black-text" to={`/products/${product.id}`}>
                                             See more details
                                         </Link>
                                     </div>

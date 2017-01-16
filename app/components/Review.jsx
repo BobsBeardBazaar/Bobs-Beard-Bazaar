@@ -19,8 +19,8 @@ const Review = ({ review }) => {
                             <p>{ review.comment }</p>
                         </div>
                         <div className="card-action black-text">
-                            <a href="#">Comment</a>
-                            <a href="#">Report as abuse</a>
+                            <Link className="grey-text darken-2" to="#">Comment</Link>
+                            <Link className="grey-text darken-2" to="#">Report as abuse</Link>
                         </div>
                     </div>
                 </div>
