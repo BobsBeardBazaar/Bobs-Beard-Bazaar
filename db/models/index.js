@@ -22,6 +22,7 @@ Product.hasMany(Review);
 
 // User foreign key on each Review
 Review.belongsTo(User, {as: 'Author'});
+User.hasMany(Review, {as: 'Author'});
 
 // User foreign key on each Address
 User.hasMany(Address);

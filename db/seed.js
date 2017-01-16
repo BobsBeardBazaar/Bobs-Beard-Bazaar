@@ -7,7 +7,7 @@ const usersToAdd = [
 ];
 
 const categoriesToAdd = [
-    { name: 'Eyebrows' }, { name: 'Mustaches' }, { name: 'Beards' }
+    { name: 'Eyebrows' }, { name: 'Mustaches' }, { name: 'Beards' }, {name: 'Hair'}
 ];
 
 const productsToAdd = [
@@ -51,6 +51,22 @@ const productsToAdd = [
         price: '5.90',
         category_id: 3
     },
+    {
+        name: `The Freedom Bun`,
+        image: 'http://images.complex.com/complex/image/upload/t_in_content_image/obamz-1445621694_nwovf2.jpg',
+        description: 'If you want to see some hope and change in your life, try this out.',
+        quantity: '44',
+        price: '20.08',
+        category_id: 4
+    },
+    {
+        name: `Omri's Ponytail`,
+        image: 'https://www.crusaderparty.co.uk/uploads/images_products_large/389_i1_plaited-pony-tail-black.jpg',
+        description: 'A once in a lifetime opportunity to behold the ponytail that will rule them all. Boundless strength and power is bestowed upon the owner when worn. And at less than $1 million, this is a steal.',
+        quantity: '1',
+        price: '999999',
+        category_id: 4
+    }
 ];
 
 const reviewsToAdd = [
@@ -81,6 +97,20 @@ const reviewsToAdd = [
         title: `I wish I had 3`,
         product_id: 2,
         author_id: 2
+    },
+    {
+        comment: `I endorse this product.`,
+        rating: 5,
+        title: `Totally legitimate approval by Obama`,
+        product_id: 6,
+        author_id: 3
+    },
+    {
+        comment: `Pretty comfortable and affordable. Wouldn't really say it makes you standout in a crowd especially if you're in Brooklyn, but it'll at the very least make you casually cool.`,
+        rating: 4,
+        title: `Pretty neat`,
+        product_id: 6,
+        author_id: 1
     }
 ];
 
