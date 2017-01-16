@@ -13,13 +13,11 @@ export default function (props) {
                   {
                     products.map((product, idx) => {
                         return (
-                            <div className="col s12 m4" key={idx}>
+                            <div className="col s12 m4 products-card" key={idx}>
                                 <div className="card">
-                                    <div className="card-image">
-                                        <Link className="thumbnail" to={`/products/${product.id}`}>
-                                            <img src={ product.image } />
-                                        </Link>
-                                    </div>
+                                    <Link className="thumbnail" to={`/products/${product.id}`}>
+                                        <div className="card-image" style={ { backgroundImage: `url(${ product.image })` } }></div>
+                                    </Link>
                                     <div className="card-content">
                                         <p className="card-title black-text"><Link className="thumbnail" to={`/products/${product.id}`}>{ product.name }</Link></p>
                                         <label>Quantity: </label>{product.quantity}
@@ -42,3 +40,5 @@ export default function (props) {
 
   );
 }
+
+// <img className="products-img" src={ product.image } />

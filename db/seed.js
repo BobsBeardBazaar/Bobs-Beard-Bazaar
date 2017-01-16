@@ -13,7 +13,7 @@ const categoriesToAdd = [
 const productsToAdd = [
     {
         name: `Joe's fabulous mustache`,
-        image: 'http://localhost:1337/img/mustacheDefault.jpg',
+        image: 'http://dailypicksandflicks.com/wp-content/uploads/2011/03/Awesome-mustache.jpg',
         description: 'There are no words to explain',
         quantity: '3',
         price: '87.12',
@@ -21,7 +21,7 @@ const productsToAdd = [
     },
     {
         name: `Surabhi's extravagant beard`,
-        image: 'http://localhost:1337/img/mustacheDefault.jpg',
+        image: 'http://pixel.nymag.com/content/dam/daily/intelligencer/2013/05/02/02-hipster-beard.jpg',
         description: 'This is the beard you were supposed to have',
         quantity: '87',
         price: '100.85',
@@ -29,12 +29,28 @@ const productsToAdd = [
     },
     {
         name: `The Yoo-Nah-Brow`,
-        image: 'http://localhost:1337/img/mustacheDefault.jpg',
+        image: 'https://i.ytimg.com/vi/H_G3QqUQb3I/maxresdefault.jpg',
         description: 'If you look up eyebrow in the dictionary, this pops up. Just buy it.',
         quantity: '1',
         price: '870.12',
         category_id: 1
-    }
+    },
+    {
+        name: `The Ron Swanson`,
+        image: 'http://i.amz.mshcdn.com/nL12MLvTrE-zIvYLMvXozeRJjAM=/950x534/2012%2F12%2F04%2F91%2Fthemovember.bhT.jpg',
+        description: '“Under my tutelage, you will grow from boys to men. From men into gladiators. And from gladiators into Swansons.” - Ron Swanson',
+        quantity: '1',
+        price: '87000.12',
+        category_id: 2
+    },
+    {
+        name: `The Hipster`,
+        image: 'https://orcaflotta.files.wordpress.com/2015/07/beardhipster.jpeg',
+        description: 'Get it before it gets popular',
+        quantity: '19',
+        price: '5.90',
+        category_id: 3
+    },
 ];
 
 const reviewsToAdd = [

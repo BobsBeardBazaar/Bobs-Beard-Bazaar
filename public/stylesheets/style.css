@@ -30,3 +30,18 @@ main {
 footer.page-footer {
     margin-top: 0px;
 }
+
+/* Products */
+.products-card {
+    height: 500px;
+}
+
+.products-img {
+    height: 300px;
+}
+
+.products-card .card-image {
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 250px;
+}
