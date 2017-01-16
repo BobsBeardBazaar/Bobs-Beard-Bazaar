@@ -18,7 +18,7 @@ router.get('/:productId', (req, res, next) => {
 	Product.findById(req.params.productId, {
         include: [Review]
     })
-	.then((singleProduct) =>{
+	.then((singleProduct) => {
 		res.json(singleProduct);
 	})
 	.catch(next);
