@@ -15,7 +15,7 @@ import Home from './components/Home';
 import Product from './components/Product';
 import User from './components/User';
 
-import ReviewContainer from './containers/ReviewContainer'
+import ReviewContainer from './containers/ReviewContainer';
 import ProductsContainer from './containers/ProductsContainer';
 
 const onProductsEnter = function (nextRouterState) {
