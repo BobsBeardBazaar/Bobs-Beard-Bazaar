@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 import {login} from 'APP/app/reducers/auth';
 
@@ -16,8 +16,9 @@ const Login = ({ login }) => {
                         <div className="card-content" id="mainSet">
                             <p className="card-title">Please sign in:</p>
                             <form onSubmit={evt => {
-                                    evt.preventDefault()
-                                    login(evt.target.username.value, evt.target.password.value)
+                                    evt.preventDefault();
+                                    login(evt.target.username.value, evt.target.password.value);
+                                    browserHistory.push('/');
                                 }}>
                                 <input placeholder="bob@example.com" name="username" />
                                 <label htmlFor="username" className="left">Username</label>
