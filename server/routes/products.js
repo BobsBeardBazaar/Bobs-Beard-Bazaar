@@ -1,5 +1,6 @@
 const db = require('APP/db/models');
 const Product = db.Product;
+const Review = db.Review;
 const router = require('express').Router();
 const { createError } = require('APP/server/utils');
 
@@ -14,9 +15,9 @@ router.get('/', (req, res, next) => {
 
 //GET single Product
 router.get('/:productId', (req, res, next) => {
-	Product.findById(
-		req.params.productId
-	)
+	Product.findById(req.params.productId, {
+        include: [Review]
+    })
 	.then((singleProduct) =>{
 		res.json(singleProduct);
 	})

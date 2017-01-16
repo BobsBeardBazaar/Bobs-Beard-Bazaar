@@ -140,4 +140,3 @@ auth.post('/logout', (req, res, next) => {
 })
 
 module.exports = auth
-

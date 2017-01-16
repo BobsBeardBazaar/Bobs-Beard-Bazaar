@@ -1,4 +1,4 @@
-const db = require('APP/db')
+const db = require('APP/db');
 
 const usersToAdd = [
     {name: 'The Admin', email: 'god@example.com', password: '1234', isAdmin: true},
@@ -13,7 +13,7 @@ const categoriesToAdd = [
 const productsToAdd = [
     {
         name: `Joe's fabulous mustache`,
-        image: 'www.google.com',
+        image: 'http://dailypicksandflicks.com/wp-content/uploads/2011/03/Awesome-mustache.jpg',
         description: 'There are no words to explain',
         quantity: '3',
         price: '87.12',
@@ -21,7 +21,7 @@ const productsToAdd = [
     },
     {
         name: `Surabhi's extravagant beard`,
-        image: 'www.google.com',
+        image: 'http://pixel.nymag.com/content/dam/daily/intelligencer/2013/05/02/02-hipster-beard.jpg',
         description: 'This is the beard you were supposed to have',
         quantity: '87',
         price: '100.85',
@@ -29,12 +29,28 @@ const productsToAdd = [
     },
     {
         name: `The Yoo-Nah-Brow`,
-        image: 'www.google.com',
+        image: 'https://i.ytimg.com/vi/H_G3QqUQb3I/maxresdefault.jpg',
         description: 'If you look up eyebrow in the dictionary, this pops up. Just buy it.',
         quantity: '1',
         price: '870.12',
         category_id: 1
-    }
+    },
+    {
+        name: `The Ron Swanson`,
+        image: 'http://i.amz.mshcdn.com/nL12MLvTrE-zIvYLMvXozeRJjAM=/950x534/2012%2F12%2F04%2F91%2Fthemovember.bhT.jpg',
+        description: '“Under my tutelage, you will grow from boys to men. From men into gladiators. And from gladiators into Swansons.” - Ron Swanson',
+        quantity: '0',
+        price: '87000.12',
+        category_id: 2
+    },
+    {
+        name: `The Hipster`,
+        image: 'https://orcaflotta.files.wordpress.com/2015/07/beardhipster.jpeg',
+        description: 'Get it before it gets popular',
+        quantity: '19',
+        price: '5.90',
+        category_id: 3
+    },
 ];
 
 const reviewsToAdd = [
@@ -42,6 +58,20 @@ const reviewsToAdd = [
         comment: `Seriously, no words for this product. Made in the USA. Organically grown. Safe for the entire family. 10 out of 10 would buy again.`,
         rating: 5,
         title: `I can't stop wearing it...`,
+        product_id: 1,
+        author_id: 2
+    },
+    {
+        comment: `My wife didn't recognize me when I walked into the door.`,
+        rating: 5,
+        title: `The mustache gods are watching over this one.`,
+        product_id: 1,
+        author_id: 2
+    },
+    {
+        comment: `I no longer get comments like "can I have your ID sir?", or "have you hit puberty yet?".`,
+        rating: 5,
+        title: `I look 10 years older, and that's a good thing.`,
         product_id: 1,
         author_id: 2
     },

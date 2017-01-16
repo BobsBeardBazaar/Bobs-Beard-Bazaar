@@ -1,0 +1,39 @@
+/* General */
+#main-content-anchor {
+  display: flex;
+  min-height: calc(100vh - 225.3px - 64px);
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* Navbar */
+#logo-container img {
+    margin-right: 1.1rem
+}
+
+#nav-username {
+    margin-right: 1.25rem
+}
+
+/* Landing page */
+#index-banner {
+    background-image: url("/img/beardSplash.jpg");
+    background-size: cover;
+    height: calc(100vh - 225.3px - 64px);
+    padding-top: 100px;
+}
+
+/* Footer */
+footer.page-footer {
+    margin-top: 0px;
+}
+
+/* Products */
+.products-card .card-image {
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 250px;
+}
