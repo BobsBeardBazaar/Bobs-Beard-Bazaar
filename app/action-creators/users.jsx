@@ -14,3 +14,13 @@ export const getUsers = () => {
       });
   };
 };
+
+export const deleteUser = (userId) => {
+    return dispatch => {
+        axios.delete(`/api/users/${userId}`)
+        .then(() => axios.get(`/api/users`))
+        .then(response => {
+          dispatch(receiveUsers(response.data));
+        });
+    };
+};
