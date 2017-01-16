@@ -45,7 +45,10 @@ module.exports = require('express').Router()
 
         // TODO: if no userId is given, then make sure they are an admin
 
-        Order.findAll(whereQuery)
+        Order.findAll(whereQuery, {
+            include: [{ model: orderProducts,
+            include: [{ model: Products}] }]
+        })
 		.then(orders => res.json(orders))
 		.catch(next);
     })

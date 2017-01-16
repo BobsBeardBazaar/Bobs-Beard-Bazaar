@@ -22,7 +22,6 @@ export const getOrderById = orderId => {
 
 export const loadOrders = function (userId) {
   return function (dispatch) {
-    //fetch('/api/orders?userId=$.cookie-session("user_id")')
     fetch(`/api/orders?userId=${userId}`)
     .then(function (res) {
       console.log("inside orders component: ", res)
