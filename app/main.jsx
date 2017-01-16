@@ -11,8 +11,8 @@ import Login from './components/Login';
 import Root from './components/Root';
 import Home from './components/Home';
 import Product from './components/Product';
-import Review from './components/Review'
 
+import ReviewContainer from './containers/ReviewContainer'
 import ProductsContainer from './containers/ProductsContainer';
 
 const onProductsEnter = function (nextRouterState) {
@@ -38,7 +38,7 @@ render(
                 <Route path="/login" component={Login} />
                 <Route path="/products" component={ProductsContainer} onEnter={onProductsEnter} />
                 <Route path="/products/:productId" component={Product} onEnter={onProductEnter} />
-                <Route path="/reviews/:reviewId" component={Review} onEnter={onReviewEnter} />
+                <Route path="/reviews/:reviewId" component={ReviewContainer} onEnter={onReviewEnter} />
             </Route>
         </Router>
     </Provider>,
