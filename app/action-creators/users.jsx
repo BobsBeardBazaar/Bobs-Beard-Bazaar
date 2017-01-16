@@ -1,16 +1,16 @@
-import { RECEIVE_USER } from '../constants';
+import { RECEIVE_USERS } from '../constants';
 import axios from 'axios';
 
-export const receiveUser = user => ({
-    type: RECEIVE_USER,
-    user
+export const receiveUsers = users => ({
+    type: RECEIVE_USERS,
+    users
 });
 
-export const getUserById = userId => {
+export const getUsers = () => {
   return dispatch => {
-    axios.get(`/api/users/${userId}`)
+    axios.get(`/api/users`)
       .then(response => {
-        dispatch(receiveUser(response.data));
+        dispatch(receiveUsers(response.data));
       });
   };
 };

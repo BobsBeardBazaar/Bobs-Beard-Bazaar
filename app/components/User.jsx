@@ -7,24 +7,20 @@ import { Link } from 'react-router';
 const User = ({ user }) => {
 
     return (
-        <div className="container">
-            <div className="row">
-                <div className="col s12 center">
-                    <h3>{ user.name }</h3>
-                    <h4>{ user.email }</h4>
+      <div className="row">
+            <div className="col s12">
+                <div className="card grey lighten-4">
+                    <div className="card-content black-text">
+                        <span><Link to="#" className="card-title">{ user.name }</Link></span>
+                    </div>
+                    <div className="card-action black-text">
+                        <Link className="grey-text darken-2" to="#">Comment</Link>
+                        <Link className="grey-text darken-2" to="#">Report as abuse</Link>
+                    </div>
                 </div>
             </div>
         </div>
     );
 };
 
-/* -----------------    CONTAINER     ------------------ */
-
-const mapProps = (state) => {
-    return {
-        user: state.users.selectedUser
-    };
-};
-const mapDispatch = null;
-
-export default connect(mapProps, mapDispatch)(User);
+export default User;
