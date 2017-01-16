@@ -64,13 +64,8 @@ module.exports = require('express').Router()
 
     // DELETE - /users/:userId - Deletes a certain user
     .delete('/:userId',
-    (req, res, next) => {
-        console.log('in delete');
-        next();
-    },
     selfOrAdminOnly('delete a user'),
     (req, res, next) => {
-        console.log(req._user);
         req._user.destroy()
         .then(() => res.sendStatus(207))
         .catch(next);
