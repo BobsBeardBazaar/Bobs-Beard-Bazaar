@@ -31,12 +31,14 @@ module.exports = require('express').Router()
     // Optional req.query.user
 	.get('/', (req, res, next) => {
         let whereQuery = {};
+        console.log("inside orders route");
 
         // If a query for a user exists, then grab only their orders
         if (req.query.userId) {
+            console.log("inside the query part", req.query.userId);
             whereQuery = {
                 where: {
-                    user_id: +req.query.userId
+                    user_id: req.query.userId
                 }
             };
         }
