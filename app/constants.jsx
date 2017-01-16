@@ -5,3 +5,6 @@ export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
 
 //reviews
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+
+//users
+export const RECEIVE_USER = 'RECEIVE_USER';

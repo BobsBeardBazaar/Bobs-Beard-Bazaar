@@ -6,8 +6,6 @@ import { Link } from 'react-router';
 
 const Review = ({ review }) => {
 
-    const createStars = Array(review.rating).map(el => (<i className="material-icons">star</i>))
-
     return (
             <div className="row">
                 <div className="col s12">
