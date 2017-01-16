@@ -1,5 +1,6 @@
 const db = require('APP/db/models');
 const Review = db.Review;
+const User = db.User;
 const { createError } = require('APP/server/utils');
 const Router = require('express').Router();
 
@@ -19,9 +20,9 @@ Router.get('/', (req, res, next) => {
 
 //GET /api/reviews/:reviewId - gets a single review
 Router.get('/:reviewId', (req, res, next) => {
-	Review.findById(
-		req.params.reviewId
-	)
+	Review.findById(req.params.reviewId, {
+        include: [{ model: User, as: 'Author' }]
+    })
 	.then((singleReview) => {
 		res.json(singleReview);
 	})

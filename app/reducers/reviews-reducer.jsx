@@ -3,6 +3,10 @@ import { RECEIVE_REVIEW } from '../constants';
 
 const initialReviewState = {
   selectedReview: {
+    Author: {
+        name: ''
+    },
+    author_id: 1,
     comment: '',
     rating: 1,
     title: ''

@@ -1,6 +1,7 @@
 const db = require('APP/db/models');
 const Product = db.Product;
 const Review = db.Review;
+const User = db.User;
 const router = require('express').Router();
 const { createError } = require('APP/server/utils');
 
@@ -16,7 +17,8 @@ router.get('/', (req, res, next) => {
 //GET single Product
 router.get('/:productId', (req, res, next) => {
 	Product.findById(req.params.productId, {
-        include: [Review]
+        include: [{ model: Review,
+            include: [{ model: User, as: 'Author' }] }]
     })
 	.then((singleProduct) => {
 		res.json(singleProduct);
