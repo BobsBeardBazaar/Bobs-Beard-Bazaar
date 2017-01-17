@@ -13,5 +13,5 @@ export const LOAD_ORDERS = 'LOAD_ORDERS';
 export const RECEIVE_REVIEW = 'RECEIVE_REVIEW';
 
 //users
-export const RECEIVE_USER = 'RECEIVE_USER';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 

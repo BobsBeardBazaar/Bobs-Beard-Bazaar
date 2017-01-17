@@ -26,7 +26,9 @@ module.exports = require('express').Router()
 
     // GET - /users/ - List all the users
 	.get('/', forbidden('only admins can list users'), (req, res, next) =>
-		User.findAll()
+		User.findAll({
+            order: 'id ASC'
+        })
 		.then(users => res.json(users))
 		.catch(next)
     )
@@ -64,13 +66,8 @@ module.exports = require('express').Router()
 
     // DELETE - /users/:userId - Deletes a certain user
     .delete('/:userId',
-    (req, res, next) => {
-        console.log('in delete');
-        next();
-    },
     selfOrAdminOnly('delete a user'),
     (req, res, next) => {
-        console.log(req._user);
         req._user.destroy()
         .then(() => res.sendStatus(207))
         .catch(next);
