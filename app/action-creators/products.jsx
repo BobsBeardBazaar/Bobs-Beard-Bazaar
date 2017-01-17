@@ -1,5 +1,6 @@
 import { LOAD_PRODUCTS, RECEIVE_PRODUCTS, RECEIVE_PRODUCT } from '../constants';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 export const receiveProducts = products => ({
     type: RECEIVE_PRODUCTS,
@@ -35,4 +36,13 @@ export const loadProducts = function () {
       console.error(err)
     });
   };
+};
+
+export const deleteProduct = productId => {
+    return () => {
+        axios.delete(`/api/products/${productId}`)
+        .then(() => {
+            browserHistory.push('/products');
+        });
+    };
 };
