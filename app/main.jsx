@@ -9,6 +9,7 @@ import { loadOrders, getOrderById } from './action-creators/orders';
 
 import { getReviewById } from './action-creators/reviews';
 import { getUserById } from './action-creators/users';
+import { getCartById } from './action-creators/cart';
 
 
 
@@ -17,9 +18,8 @@ import Login from './components/Login';
 import Root from './components/Root';
 import Home from './components/Home';
 import Product from './components/Product';
-
 import Orders from './components/Orders';
-
+import Cart from './componenets/Cart';
 import User from './components/User';
 
 
@@ -50,6 +50,11 @@ const onUserEnter = function(nextRouterState) {
     store.dispatch(getUserById(userId));
 };
 
+const onCartEnter = function(nextRouterState) {
+    const cartId = nextRouterState.params.cartId;
+    store.dispatch(getCartById(cartId));
+};
+
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
@@ -67,3 +72,6 @@ render(
     </Provider>,
     document.getElementById('main')
 );
+
+
+//<Route path="/cart/:userId" component={Cart} onEnter={onCartEnter} />

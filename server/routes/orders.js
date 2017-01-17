@@ -15,7 +15,6 @@ module.exports = require('express').Router()
                 next(createError(404, 'order not found'));
                 return;
             }
-
             req._order = order;
             next();
         });
