@@ -29,6 +29,7 @@ User.hasMany(Address);
 
 // Category foreign key on each Product
 Category.hasMany(Product);
+Product.belongsTo(Category);
 
 // Address foreign key as 'ShippingAddress' on each Order
 Order.belongsTo(Address, {as: 'ShippingAddress'});

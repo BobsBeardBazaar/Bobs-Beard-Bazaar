@@ -5,7 +5,8 @@ import { setFilter } from 'APP/app/action-creators/products'
 
 const mapStateToProps = (state) => {
   return {
-    products: state.products.filteredList
+    products: state.products.filteredList,
+    categories: state.products.categories
   };
 };
 

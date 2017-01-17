@@ -39,7 +39,7 @@ export const loadProducts = function () {
       dispatch(action);
     })
     .catch(function (err) {
-      console.error(err)
+      console.error(err);
     });
   };
 };

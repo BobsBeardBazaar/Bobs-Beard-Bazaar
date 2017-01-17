@@ -12,7 +12,17 @@ const initialProductsState = {
     },
     list: [],
     filteredList: [],
-    filterId: 0
+    filterId: 0,
+    categories: []
+};
+
+// Helper function
+const getCategories = (products) => {
+    const categories = {};
+    products.forEach(product => {
+        if (!categories[product.category.name]) categories[product.category.name] = product.category.id;
+    });
+    return categories;
 };
 
 export default function (state = initialProductsState, action) {
@@ -26,6 +36,7 @@ export default function (state = initialProductsState, action) {
 
         case RECEIVE_PRODUCTS:
         newState.list = newState.filteredList = action.products;
+        newState.categories = getCategories(action.products);
         break;
 
         case RECEIVE_PRODUCT:
