@@ -18,7 +18,7 @@ const ReviewForm = ({ product, user, addReview }) => {
                             rating: evt.target.rating.value,
                             comment: evt.target.comment.value,
                             product_id: product.id,
-                            user_id: user.id
+                            author_id: user.id
                         });
                     }}>
                     <div className="row">
