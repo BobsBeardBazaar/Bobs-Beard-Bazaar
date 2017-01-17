@@ -2,8 +2,11 @@
 
 const db = require('APP/db');
 const Order = db.model('orders');
+
+const OrderProducts = db.model('orderProducts');
 const Products = db.model('products');
 const { createError } = require('APP/server/utils');
+const { mustBeLoggedIn, forbidden, selfOrAdminOnly } = require('../auth/auth.filters');
 
 
 module.exports = require('express').Router()
@@ -32,6 +35,9 @@ module.exports = require('express').Router()
     .get('/', (req, res, next) => {
         let whereQuery = {};
         console.log("inside orders route");
+
+        console.log("req.user", req.user);
+
         // If a query for a user exists, then grab only their orders
         if (req.query.userId) {
             console.log("inside the query part", req.query.userId);
@@ -42,28 +48,20 @@ module.exports = require('express').Router()
             };
         }
 
-        if (req.query.status && req.query.userId) {
-            console.log("inside the query part", req.query.userId);
-            whereQuery = {
-                where: {
-                    user_id: req.query.userId,
-                    status: req.query.status
-                }
-            };
-        }
-
-        Order.findAll( {whereQuery,
-            include: [{ model: Products,
-                through: {
-                    attributes: ['quantity', 'price']
-                }
-            }]}
+        Order.findAll( Object.assign(whereQuery,
+            {
+                include: [{ model: Products,
+                    through: {
+                        attributes: ['quantity', 'price']
+                    } 
+                }]
+            })
         )
-        .then((orders) => {
-            console.log("the response is: ", orders);
+		.then((orders) => {
+            //console.log("the response is: ", orders);
             res.json(orders);
         })
-        .catch(next);
+		.catch(next);
     })
 
 	.post('/', (req, res, next) =>

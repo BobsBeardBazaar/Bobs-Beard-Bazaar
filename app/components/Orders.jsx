@@ -17,6 +17,11 @@ const Orders = function (props) {
                                   <li className="collection-item avatar">
   
                                     <span className="title">{order.status}</span>
+                                    <span className="right">
+                                  Product: {
+                                    order.products.map((product) => product.name)
+                                }
+                            </span>
                                     <p>First Line <br />
                                        Second Line 
                                     </p>
