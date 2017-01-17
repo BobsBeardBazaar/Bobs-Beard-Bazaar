@@ -1,4 +1,4 @@
-import { LOAD_ORDERS, RECEIVE_ORDERS, RECEIVE_ORDER } from '../constants';
+import { LOAD_ORDERS, RECEIVE_ORDERS, RECEIVE_ORDER } from '../constants.jsx';
 import axios from 'axios';
 
 export const receiveOrders = orders => ({
@@ -28,10 +28,12 @@ export const loadOrders = function (userId) {
       return res.json();
     })
     .then(function (orders) {
+      console.log("in second then? ", orders);
       const action = receiveOrders(orders);
       dispatch(action);
     })
     .catch(function (err) {
+      console.log("in orders error block");
       console.error(err)
     });
   };

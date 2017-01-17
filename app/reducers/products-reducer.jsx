@@ -2,7 +2,7 @@ import {
   LOAD_PRODUCTS,
   RECEIVE_PRODUCTS,
   RECEIVE_PRODUCT
-} from '../constants';
+} from '../constants.jsx';
 
 
 const initialProductsState = {

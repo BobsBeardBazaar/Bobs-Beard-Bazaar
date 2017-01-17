@@ -1,4 +1,4 @@
-import { LOAD_PRODUCTS, RECEIVE_PRODUCTS, RECEIVE_PRODUCT } from '../constants';
+import { LOAD_PRODUCTS, RECEIVE_PRODUCTS, RECEIVE_PRODUCT } from '../constants.jsx';
 import axios from 'axios';
 
 export const receiveProducts = products => ({

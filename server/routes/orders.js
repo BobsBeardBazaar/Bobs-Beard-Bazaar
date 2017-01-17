@@ -1,7 +1,9 @@
 'use strict';
 
-const db = require('APP/db');
-const Order = db.model('orders');
+const db = require('APP/db/models');
+const Order = db.Order;
+const Product = db.Product;
+const OrderProduct = db.OrderProducts;
 const { createError } = require('APP/server/utils');
 
 
@@ -9,13 +11,15 @@ module.exports = require('express').Router()
 
     // Grab the order first if asked for
     .param('orderId', (req, res, next, orderId) => {
-        Order.findById(orderId)
+        Order.findById(orderId, {
+            include: [{ model: OrderProduct,
+                include: [{ model: Product, as: 'Product' }] }]
+        })
         .then(order => {
             if (!order) {
                 next(createError(404, 'order not found'));
                 return;
             }
-
             req._order = order;
             next();
         });
@@ -45,10 +49,7 @@ module.exports = require('express').Router()
 
         // TODO: if no userId is given, then make sure they are an admin
 
-        Order.findAll(whereQuery, {
-            include: [{ model: orderProducts,
-            include: [{ model: Products}] }]
-        })
+        Order.findAll(whereQuery)
 		.then(orders => res.json(orders))
 		.catch(next);
     })

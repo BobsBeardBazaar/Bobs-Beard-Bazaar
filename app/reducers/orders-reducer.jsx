@@ -2,7 +2,7 @@ import {
   LOAD_ORDERS,
   RECEIVE_ORDERS,
   RECEIVE_ORDER
-} from '../constants';
+} from '../constants.jsx';
 
 
 const initialOrdersState = {
