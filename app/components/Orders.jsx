@@ -4,29 +4,36 @@ import {Link} from 'react-router';
 
 
 const Orders = function (props) {
+  console.log("orders is: ", props.orders);
   return (
       <div className="container">
           <div className="row">
               <h4>Your Orders</h4>
               <h5>Total orders: {props.orders.length}</h5>
                   {
+
                     props.orders.map((order, idx) => {
                         return (
                             <div className="col s12" key={idx}>
-                                <ul className="collection">
-                                  <li className="collection-item avatar">
-  
                                     <span className="title">{order.status}</span>
-                                    <span className="right">
-                                  Product: {
-                                    order.products.map((product) => product.name)
-                                }
-                            </span>
-                                    <p>First Line <br />
-                                       Second Line 
-                                    </p>
-                                  </li>
-                                </ul>
+                                    <ul className="collection">
+                                     {
+                                      
+                                      order.products.map((product) => (
+                                      <li className="collection-item avatar">
+                                      <img src={product.image} alt="" className="circle"/>
+                                      <span className="title">{product.name}</span>
+                                      <p>{product.orderProducts.quantity} <br />
+                                          {product.orderProducts.price}
+                                      </p>                                     
+                                      <a className="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                      </li>
+                                      ))
+                                      
+                                    }
+                                    </ul>
+                                 
+                                    
                             </div>
                         );
                     })
