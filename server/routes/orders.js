@@ -1,53 +1,92 @@
-'use strict'
+'use strict';
 
-const db = require('APP/db')
-const Order = db.model('orders')
+const db = require('APP/db');
+const Order = db.model('orders');
+const Products = db.model('products');
+const { createError } = require('APP/server/utils');
 
 
 module.exports = require('express').Router()
+
+    // Grab the order first if asked for
+    .param('orderId', (req, res, next, orderId) => {
+        Order.findById(orderId)
+        .then(order => {
+            if (!order) {
+                next(createError(404, 'order not found'));
+                return;
+            }
+            req._order = order;
+            next();
+        });
+    })
+
 	//GET one order
+    //localhost:1337/api/orders/:orderId
 	.get('/:orderId', (req, res, next) =>
-		Order.findById(req.params.orderId)
-		.then(order => res.json(order))
-		.catch(next))
+        res.json(req._order)
+    )
 
-	//GET all the orders of this user
-	//localhost:1337/api/orders/user/:userId
-	.get('/user/:userId', (req, res, next) =>
-		Order.findAll({
-			where: {
-				user_id: req.params.userId
-			}
-		})
-		.then(order => res.json(order))
-		.catch(next))
+    //GET all the orders for the admin
+    // Optional req.query.user, req.query.status
+    .get('/', (req, res, next) => {
+        let whereQuery = {};
+        console.log("inside orders route");
+        // If a query for a user exists, then grab only their orders
+        if (req.query.userId) {
+            console.log("inside the query part", req.query.userId);
+            whereQuery = {
+                where: {
+                    user_id: req.query.userId
+                }
+            };
+        }
 
-	//GET all the orders for the admin
-	.get('/', (req, res, next) =>
-		Order.findAll(req.params.userId)
-		.then(orders => res.json(orders))
-		.catch(next))
+        if (req.query.status && req.query.userId) {
+            console.log("inside the query part", req.query.userId);
+            whereQuery = {
+                where: {
+                    user_id: req.query.userId,
+                    status: req.query.status
+                }
+            };
+        }
+
+        Order.findAll( {whereQuery,
+            include: [{ model: Products,
+                through: {
+                    attributes: ['quantity', 'price']
+                }
+            }]}
+        )
+        .then((orders) => {
+            console.log("the response is: ", orders);
+            res.json(orders);
+        })
+        .catch(next);
+    })
 
 	.post('/', (req, res, next) =>
+        // TODO: add authorization
 		Order.create(req.body)
 		.then(cart => res.status(201).json(cart))
 		.catch(next))
 
-	.delete('/:id', (req, res, next) =>
-		Order.destroy({
-			where: {
-				id: req.params.id
-			}
-		})
-		.then(deletedOrdersNum => res.status(200).json(deletedOrdersNum))
+	.delete('/:orderId', (req, res, next) =>
+        req._order.destroy()
+		.then(() => res.sendStatus(204))
 		.catch(next))
 
-	.put('/:id', (req, res, next) =>
+	.put('/:orderId', (req, res, next) =>
+        // TODO: add authorization
 		Order.update(req.body, {
 			where: {
-				id: req.params.id
+				id: req.params.orderId
 			},
 			returning: true
 		})
-		.then(result => res.json(result[1][0]))
-  	.catch(next))
+		.then(result => {
+            if (!result) next(createError(404, 'order not found'));
+            else res.json(result[1][0]);
+        })
+        .catch(next));

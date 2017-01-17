@@ -1,11 +1,12 @@
 const db = require('APP/db/models');
 const Product = db.Product;
-
-const Router = require('express').Router();
-
+const Review = db.Review;
+const User = db.User;
+const router = require('express').Router();
+const { createError } = require('APP/server/utils');
 
 //GET all the Products
-Router.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	Product.findAll({})
 	.then((products) => {
 		res.json(products);
@@ -14,18 +15,19 @@ Router.get('/', (req, res, next) => {
 });
 
 //GET single Product
-Router.get('/:productId', (req, res, next) => {
-	Product.findById(
-		req.params.productId
-	)
-	.then((singleProduct) =>{
+router.get('/:productId', (req, res, next) => {
+	Product.findById(req.params.productId, {
+        include: [{ model: Review,
+            include: [{ model: User, as: 'Author' }] }]
+    })
+	.then((singleProduct) => {
 		res.json(singleProduct);
 	})
 	.catch(next);
 });
 
 //DELETE product
-Router.delete('/:productId', (req, res, next) => {
+router.delete('/:productId', (req, res, next) => {
 	Product.destroy({
 		where: {
 			id: req.params.productId
@@ -38,7 +40,8 @@ Router.delete('/:productId', (req, res, next) => {
 });
 
 //PUT (update) a product
-Router.put('/:productId', (req, res, next) => {
+router.put('/:productId', (req, res, next) => {
+    // TODO: add authorization
 	Product.update(req.body, {
 		where: {
 			id: req.params.productId,
@@ -46,13 +49,14 @@ Router.put('/:productId', (req, res, next) => {
         returning: true
 	})
 	.then((updatedProduct) => {
-		res.json(updatedProduct[1][0]); // Send back the updated product
+        if (!updatedProduct[0]) next(createError(404, 'product not found'));
+		else res.json(updatedProduct[1][0]); // Send back the updated product
 	})
 	.catch(next);
 });
 
 //POST a new product
-Router.post('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	Product.create({ name: req.body.name,
 		image: req.body.image,
 		description: req.body.description,
@@ -65,4 +69,4 @@ Router.post('/', (req, res, next) => {
 	.catch(next);
 });
 
-module.exports = Router;
+module.exports = router;
