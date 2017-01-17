@@ -4,12 +4,22 @@ import {Link} from 'react-router';
 export default function (props) {
 
   const products = props.products;
+  const setFilter = props.setFilter;
 
   return (
       <div className="container">
           <div className="row">
               <h4>Our Products</h4>
               <h5>Total products: {products.length}</h5>
+                  <div className="col s3 offset-s9">
+                      <label>Filter</label>
+                      <select className="browser-default" onChange={evt => setFilter(evt.target.value)}>
+                          <option value="" disabled selected>Choose your option</option>
+                          <option value="0">Option 1</option>
+                          <option value="1">Option 2</option>
+                          <option value="2">Option 3</option>
+                      </select>
+                  </div>
                   {
                     products.map((product, idx) => {
                         return (
