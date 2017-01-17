@@ -2,6 +2,7 @@
 
 const db = require('APP/db');
 const Order = db.model('orders');
+
 const OrderProducts = db.model('orderProducts');
 const Products = db.model('products');
 const { createError } = require('APP/server/utils');
@@ -18,7 +19,6 @@ module.exports = require('express').Router()
                 next(createError(404, 'order not found'));
                 return;
             }
-
             req._order = order;
             next();
         });
@@ -30,11 +30,12 @@ module.exports = require('express').Router()
         res.json(req._order)
     )
 
-	//GET all the orders for the admin
-    // Optional req.query.user
-	.get('/', (req, res, next) => {
+    //GET all the orders for the admin
+    // Optional req.query.user, req.query.status
+    .get('/', (req, res, next) => {
         let whereQuery = {};
         console.log("inside orders route");
+
         console.log("req.user", req.user);
 
         // If a query for a user exists, then grab only their orders
@@ -46,6 +47,7 @@ module.exports = require('express').Router()
                 }
             };
         }
+
         Order.findAll( Object.assign(whereQuery,
             {
                 include: [{ model: Products,
