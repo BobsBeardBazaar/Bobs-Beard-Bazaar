@@ -1,21 +1,14 @@
-import { RECEIVE_USER } from '../constants';
+import { RECEIVE_USERS } from '../constants';
 
-
-const initialUsersState = {
-  selectedUser: {
-    name: '',
-    email: '',
-    isAdmin: false
-  }
-};
+const initialUsersState = [];
 
 export default function (state = initialUsersState, action) {
 
-  const newState = Object.assign({}, state);
+  let newState = [];
 
   switch (action.type) {
-    case RECEIVE_USER:
-      newState.selectedUser = action.user;
+    case RECEIVE_USERS:
+      newState = action.users;
       break;
 
     default:

@@ -8,10 +8,11 @@ import { loadProducts, getProductById } from './action-creators/products';
 import { loadOrders, getOrderById } from './action-creators/orders';
 
 import { getReviewById } from './action-creators/reviews';
+
 import { getUserById } from './action-creators/users';
 import { getCartById } from './action-creators/cart';
 
-
+import { getUsers } from './action-creators/users';
 
 import store from './store';
 import Login from './components/Login';
@@ -21,6 +22,8 @@ import Product from './components/Product';
 import Orders from './components/Orders';
 import Cart from './components/Cart';
 import User from './components/User';
+
+import Users from './components/Users';
 
 
 import ReviewContainer from './containers/ReviewContainer';
@@ -45,9 +48,8 @@ const onReviewEnter = function(nextRouterState) {
     store.dispatch(getReviewById(reviewId));
 };
 
-const onUserEnter = function(nextRouterState) {
-    const userId = nextRouterState.params.userId;
-    store.dispatch(getUserById(userId));
+const onAdminEnter = function(nextRouterState) {
+    store.dispatch(getUsers());
 };
 
 const onCartEnter = function(nextRouterState) {
@@ -66,7 +68,7 @@ render(
                 <Route path="/orders/:userId" component={Orders} onEnter={onOrdersEnter} />
                 <Route path="/products/:productId" component={Product} onEnter={onProductEnter} />
                 <Route path="/reviews/:reviewId" component={ReviewContainer} onEnter={onReviewEnter} />
-                <Route path="/users/:userId" component={User} onEnter={onUserEnter} />
+                <Route path="/users" component={Users} onEnter={onAdminEnter} />
             </Route>
         </Router>
     </Provider>,
