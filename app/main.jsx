@@ -19,7 +19,7 @@ import Root from './components/Root';
 import Home from './components/Home';
 import Product from './components/Product';
 import Orders from './components/Orders';
-import Cart from './componenets/Cart';
+import Cart from './components/Cart';
 import User from './components/User';
 
 
