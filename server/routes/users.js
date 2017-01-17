@@ -26,7 +26,9 @@ module.exports = require('express').Router()
 
     // GET - /users/ - List all the users
 	.get('/', forbidden('only admins can list users'), (req, res, next) =>
-		User.findAll()
+		User.findAll({
+            order: 'id ASC'
+        })
 		.then(users => res.json(users))
 		.catch(next)
     )

@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Review from './Review';
+import ReviewForm from './ReviewForm';
 
 /* -----------------    COMPONENT     ------------------ */
 
-const Product = ({ product }) => {
+const Product = ({ product, user }) => {
 
     return (
         <div className="container">
@@ -31,6 +32,10 @@ const Product = ({ product }) => {
                         return ( <Review review={review} key={ idx }/> );
                     }) : <p>No current reviews</p> }
                 </div>
+                { user && (<div className="col s12">
+                    <h4>Add a Review</h4>
+                    <ReviewForm />
+                </div>) }
             </div>
         </div>
     );
@@ -40,7 +45,8 @@ const Product = ({ product }) => {
 
 const mapProps = (state) => {
     return {
-        product: state.products.selected
+        product: state.products.selected,
+        user: state.auth
     };
 };
 const mapDispatch = null;
