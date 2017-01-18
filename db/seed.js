@@ -160,6 +160,12 @@ const orderProductsToAdd = [
         price: 18.39,
         order_id: 1,
         product_id: 3
+    },
+    {
+        quantity: 3,
+        price: 87000.12,
+        order_id: 2,
+        product_id: 4
     }
 ];
 
