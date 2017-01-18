@@ -6,7 +6,8 @@ import User from './User';
 /* -----------------    COMPONENT     ------------------ */
 
 const Users = ({ users }) => {
-    console.log('USERS', users);
+
+    console.log('USERS INSIDE COMPONENT', users)
 
     return (
         <div className="container">

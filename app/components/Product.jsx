@@ -5,9 +5,11 @@ import { Link } from 'react-router';
 import Review from './Review';
 import ReviewForm from './ReviewForm';
 
+import { deleteProduct } from '../action-creators/products';
+
 /* -----------------    COMPONENT     ------------------ */
 
-const Product = ({ product, user }) => {
+const Product = ({ product, user, deleteProduct }) => {
 
     return (
         <div className="container">
@@ -24,7 +26,7 @@ const Product = ({ product, user }) => {
                         <p>{ product.description }</p>
                         { product.quantity ? <Link className="waves-effect waves-light btn"><i className="material-icons left">shopping_cart</i>Add to cart</Link>
                         : <Link className="waves-effect waves-light btn"><i className="material-icons left">email</i>Notify me when available</Link> }
-                        { user && user.isAdmin && <Link className="waves-effect waves-light btn red"><i className="material-icons left">delete</i>Delete item</Link>}
+                        { user && user.isAdmin && <Link onClick={ () => deleteProduct(product.id) } className="waves-effect waves-light btn red"><i className="material-icons left">delete</i>Delete item</Link>}
                     </div>
                 </div>
                 <div className="col s12">
@@ -50,6 +52,6 @@ const mapProps = (state) => {
         user: state.auth
     };
 };
-const mapDispatch = null;
+const mapDispatch = { deleteProduct };
 
 export default connect(mapProps, mapDispatch)(Product);

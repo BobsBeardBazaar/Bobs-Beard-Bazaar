@@ -34,18 +34,28 @@ module.exports = require('express').Router()
     // Optional req.query.user, req.query.status
     .get('/', (req, res, next) => {
         let whereQuery = {};
-        console.log("inside orders route");
-
-        console.log("req.user", req.user);
 
         // If a query for a user exists, then grab only their orders
         if (req.query.userId) {
             console.log("inside the query part", req.query.userId);
-            whereQuery = {
-                where: {
-                    user_id: req.query.userId
-                }
-            };
+            if(req.query.status === "cart"){
+                whereQuery = {
+                    where: {
+                        user_id: req.query.userId,
+                        status: 'cart'
+                    }
+                };
+
+            }else{
+                whereQuery = {
+                    where: {
+                        user_id: req.query.userId,
+                        status: {
+                                $ne: 'cart'
+                        }
+                    }
+                };
+            }
         }
 
         Order.findAll( Object.assign(whereQuery,
@@ -53,12 +63,12 @@ module.exports = require('express').Router()
                 include: [{ model: Products,
                     through: {
                         attributes: ['quantity', 'price']
-                    } 
+                    }
                 }]
             })
         )
 		.then((orders) => {
-            //console.log("the response is: ", orders);
+            orders.forEach(order => order['total'] = "total");
             res.json(orders);
         })
 		.catch(next);
@@ -69,6 +79,14 @@ module.exports = require('express').Router()
 		Order.create(req.body)
 		.then(cart => res.status(201).json(cart))
 		.catch(next))
+
+    .delete('/?orderId=:orderId&productId=:productId', (req, res, next) =>
+        OrderProducts.destroy({where: {
+            order_id: req.query.orderId,
+            product_id: req.query.productId
+        }})
+        .then(() => res.sendStatus(204))
+        .catch(next))
 
 	.delete('/:orderId', (req, res, next) =>
         req._order.destroy()

@@ -9,10 +9,8 @@ import { loadOrders, getOrderById } from './action-creators/orders';
 
 import { getReviewById } from './action-creators/reviews';
 
-import { getUserById } from './action-creators/users';
-import { getCartById } from './action-creators/cart';
-
 import { getUsers } from './action-creators/users';
+import { getCartById } from './action-creators/cart';
 
 import store from './store';
 import Login from './components/Login';
@@ -53,8 +51,9 @@ const onAdminEnter = function(nextRouterState) {
 };
 
 const onCartEnter = function(nextRouterState) {
-    const cartId = nextRouterState.params.cartId;
-    store.dispatch(getCartById(cartId));
+    console.log("inside on cart enter");
+    const userId = nextRouterState.params.userId;
+    store.dispatch(getCartById(userId));
 };
 
 render(
@@ -66,6 +65,7 @@ render(
                 <Route path="/login" component={Login} />
                 <Route path="/products" component={ProductsContainer} onEnter={onProductsEnter} />
                 <Route path="/orders/:userId" component={Orders} onEnter={onOrdersEnter} />
+                <Route path="/cart/:userId" component={Cart} onEnter={onCartEnter} />
                 <Route path="/products/:productId" component={Product} onEnter={onProductEnter} />
                 <Route path="/reviews/:reviewId" component={ReviewContainer} onEnter={onReviewEnter} />
                 <Route path="/users" component={Users} onEnter={onAdminEnter} />
@@ -76,4 +76,3 @@ render(
 );
 
 
-//<Route path="/cart/:userId" component={Cart} onEnter={onCartEnter} />
