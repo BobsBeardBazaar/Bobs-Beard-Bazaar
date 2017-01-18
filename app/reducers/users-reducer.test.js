@@ -35,14 +35,18 @@ describe('User reducer', () => {
         expect(testStore.getState()).to.be.deep.equal([]);
     });
 
+
     describe('Set first array of users', () => {
 
         it('sets initialUsersState', () => {
             testStore.dispatch({ type: 'RECEIVE_USERS', users: usersArray });
             const newState = testStore.getState();
-            expect(newState.users).to.be.deep.equal(usersArray);
+            console.log('NEW STATE FOR USERS', newState);
+            console.log('Store.users', newState.users);
+            expect(newState.usersArray).to.be.deep.equal(usersArray);
         });
 
     });
 
 });
+

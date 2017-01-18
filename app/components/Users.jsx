@@ -6,8 +6,6 @@ import User from './User';
 /* -----------------    COMPONENT     ------------------ */
 
 const Users = ({ users }) => {
-    console.log('USERS', users);
-
     return (
         <div className="container">
             <div className="row">
