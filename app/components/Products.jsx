@@ -4,12 +4,31 @@ import {Link} from 'react-router';
 export default function (props) {
 
   const products = props.products;
+  const setFilter = props.setFilter;
+  const categories = props.categories;
 
   return (
       <div className="container">
           <div className="row">
-              <h4>Our Products</h4>
-              <h5>Total products: {products.length}</h5>
+              <div className="row">
+                  <div className="col m9 s12">
+                      <h4>Our Products</h4>
+                      <h5>Total products: {products.length}</h5>
+                  </div>
+                  <div className="col m3 s12">
+                      <label>Filter</label>
+                      <select className="browser-default" onChange={evt => setFilter(evt.target.value)}>
+                          <option value="" disabled defaultValue>Choose your option</option>
+                          {
+                              Object.keys(categories).map(categoryKey => {
+                                  const catId = categories[categoryKey];
+                                  return <option value={ catId } key={ catId }>{ categoryKey }</option>;
+                                  })
+                              }
+                              <option value="0">All</option>
+                          </select>
+                  </div>
+              </div>
                   {
                     products.map((product, idx) => {
                         return (
@@ -38,5 +57,3 @@ export default function (props) {
 
   );
 }
-
-// <img className="products-img" src={ product.image } />

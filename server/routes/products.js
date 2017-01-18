@@ -2,12 +2,15 @@ const db = require('APP/db/models');
 const Product = db.Product;
 const Review = db.Review;
 const User = db.User;
+const Category = db.Category;
 const router = require('express').Router();
 const { createError } = require('APP/server/utils');
 
 //GET all the Products
 router.get('/', (req, res, next) => {
-	Product.findAll({})
+	Product.findAll({
+        include: [Category]
+    })
 	.then((products) => {
 		res.json(products);
 	})
