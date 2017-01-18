@@ -28,10 +28,6 @@ export default function (state = initialOrdersState, action) {
       newState.cart= action.cart;
       break;
 
-    case RECEIVE_ORDERS:
-      newState.list = action.orders;
-      break;
-
     case RECEIVE_ORDER:
       newState.selected = action.order;
       break;

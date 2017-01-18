@@ -2,7 +2,7 @@ import { LOAD_ORDERS, RECEIVE_ORDERS, RECEIVE_ORDER } from '../constants';
 import axios from 'axios';
 
 export const receiveOrders = orders => ({
-    type: RECEIVE_ORDERS,
+    type: LOAD_ORDERS,
     orders
 });
 
