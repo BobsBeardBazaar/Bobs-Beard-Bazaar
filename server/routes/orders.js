@@ -41,14 +41,24 @@ module.exports = require('express').Router()
         // If a query for a user exists, then grab only their orders
         if (req.query.userId) {
             console.log("inside the query part", req.query.userId);
-            whereQuery = {
-                where: {
-                    user_id: req.query.userId,
-                    status: {
-                            $ne: 'cart'
+            if(req.query.status === "cart"){
+                whereQuery = {
+                    where: {
+                        user_id: req.query.userId,
+                        status: 'cart'
                     }
-                }
-            };
+                };
+
+            }else{
+                whereQuery = {
+                    where: {
+                        user_id: req.query.userId,
+                        status: {
+                                $ne: 'cart'
+                        }
+                    }
+                };
+            }
         }
 
         Order.findAll( Object.assign(whereQuery,
@@ -61,7 +71,9 @@ module.exports = require('express').Router()
             })
         )
 		.then((orders) => {
-            //console.log("the response is: ", orders);
+            
+            orders.forEach(order => order['total'] = "total");
+            console.log("the response after for each is: ", orders);
             res.json(orders);
         })
 		.catch(next);
