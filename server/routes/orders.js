@@ -43,7 +43,10 @@ module.exports = require('express').Router()
             console.log("inside the query part", req.query.userId);
             whereQuery = {
                 where: {
-                    user_id: req.query.userId
+                    user_id: req.query.userId,
+                    status: {
+                            $ne: 'cart'
+                    }
                 }
             };
         }
@@ -70,10 +73,22 @@ module.exports = require('express').Router()
 		.then(cart => res.status(201).json(cart))
 		.catch(next))
 
+    .delete('/?orderId=:orderId&productId=:productId', (req, res, next) =>
+        OrderProducts.destroy({where: {
+            order_id: req.query.orderId,
+            product_id: req.query.productId
+        }})
+        .then(() => res.sendStatus(204))
+        .catch(next))
+
 	.delete('/:orderId', (req, res, next) =>
         req._order.destroy()
 		.then(() => res.sendStatus(204))
 		.catch(next))
+
+    
+
+
 
 	.put('/:orderId', (req, res, next) =>
         // TODO: add authorization

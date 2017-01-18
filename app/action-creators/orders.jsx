@@ -20,6 +20,18 @@ export const getOrderById = orderId => {
   };
 };
 
+export const deleteOrderProduct = (orderId, productId) => {
+  console.log("inside deleteOrderProduct");
+    return dispatch => {
+      console.log("inside deleteOrderProduct");
+        axios.delete(`/api/orders?orderId=${orderId}&productId=${productId}`)
+        .then(() => axios.get(`/api/orders?userId=${userId}`))
+        .then(response => {
+          dispatch(receiveOrders(response.data));
+        });
+    };
+};
+
 export const loadOrders = function (userId) {
   return function (dispatch) {
     fetch(`/api/orders?userId=${userId}`)
