@@ -29,6 +29,8 @@ const Orders = function (props) {
                                           Price: {product.orderProducts.price}
                                       </p>                                     
                                       <Link className="btn-floating btn-small waves-effect waves-light red secondary-content" onClick={() => deleteOrderProduct(order.id, product.id)}><i className="material-icons">delete</i></Link>
+
+                                     
                                       </li>
                                       ))
                                       

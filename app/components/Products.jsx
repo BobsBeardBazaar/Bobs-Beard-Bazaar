@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export default function (props) {
+const Products = (props) => {
 
   const products = props.products;
   const setFilter = props.setFilter;
@@ -57,3 +57,6 @@ export default function (props) {
 
   );
 }
+
+export default Products;
+

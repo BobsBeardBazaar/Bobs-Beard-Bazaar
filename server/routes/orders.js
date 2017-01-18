@@ -34,9 +34,6 @@ module.exports = require('express').Router()
     // Optional req.query.user, req.query.status
     .get('/', (req, res, next) => {
         let whereQuery = {};
-        console.log("inside orders route");
-
-        console.log("req.user", req.user);
 
         // If a query for a user exists, then grab only their orders
         if (req.query.userId) {
@@ -66,14 +63,12 @@ module.exports = require('express').Router()
                 include: [{ model: Products,
                     through: {
                         attributes: ['quantity', 'price']
-                    } 
+                    }
                 }]
             })
         )
 		.then((orders) => {
-            
             orders.forEach(order => order['total'] = "total");
-            console.log("the response after for each is: ", orders);
             res.json(orders);
         })
 		.catch(next);
@@ -97,10 +92,6 @@ module.exports = require('express').Router()
         req._order.destroy()
 		.then(() => res.sendStatus(204))
 		.catch(next))
-
-    
-
-
 
 	.put('/:orderId', (req, res, next) =>
         // TODO: add authorization
