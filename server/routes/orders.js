@@ -34,13 +34,9 @@ module.exports = require('express').Router()
     // Optional req.query.user, req.query.status
     .get('/', (req, res, next) => {
         let whereQuery = {};
-        console.log("inside orders route");
-
-        console.log("req.user", req.user);
 
         // If a query for a user exists, then grab only their orders
         if (req.query.userId) {
-            console.log("inside the query part", req.query.userId);
             whereQuery = {
                 where: {
                     user_id: req.query.userId
@@ -53,12 +49,11 @@ module.exports = require('express').Router()
                 include: [{ model: Products,
                     through: {
                         attributes: ['quantity', 'price']
-                    } 
+                    }
                 }]
             })
         )
 		.then((orders) => {
-            //console.log("the response is: ", orders);
             res.json(orders);
         })
 		.catch(next);
