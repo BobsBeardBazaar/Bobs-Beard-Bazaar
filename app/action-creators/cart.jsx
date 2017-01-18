@@ -6,9 +6,9 @@ export const receiveCart = cart => ({
     cart
 });
 
-export const getCartById = cartId => {
+export const getCartById = userId => {
   return dispatch => {
-    axios.get(`/api/orders?status=cart`)
+    axios.get(`/api/orders?userId=${userId}&status=cart`)
       .then(response => {
         dispatch(receiveCart(response.data));
       });

@@ -32,6 +32,7 @@ export default function (state = initialProductsState, action) {
     switch (action.type) {
         case LOAD_PRODUCTS:
         newState.list = action.products;
+        newState.categories = getCategories(action.products);
         break;
 
         case RECEIVE_PRODUCTS:

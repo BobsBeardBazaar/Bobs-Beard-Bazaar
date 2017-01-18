@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router';
 
+import {deleteOrderProduct} from 'APP/app/action-creators/orders';
+
 
 const Orders = function (props) {
   console.log("orders is: ", props.orders);
@@ -15,7 +17,7 @@ const Orders = function (props) {
                     props.orders.map((order, idx) => {
                         return (
                             <div className="col s12" key={idx}>
-                                    <span className="title">{order.status}</span>
+                                    Order: {++idx}  <span className="title">Status: {order.status}</span>
                                     <ul className="collection">
                                      {
                                       
@@ -23,10 +25,12 @@ const Orders = function (props) {
                                       <li className="collection-item avatar">
                                       <img src={product.image} alt="" className="circle"/>
                                       <span className="title">{product.name}</span>
-                                      <p>{product.orderProducts.quantity} <br />
-                                          {product.orderProducts.price}
+                                      <p>Quantity: {product.orderProducts.quantity} <br />
+                                          Price: {product.orderProducts.price}
                                       </p>                                     
-                                      <a className="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                      <Link className="btn-floating btn-small waves-effect waves-light red secondary-content" onClick={() => deleteOrderProduct(order.id, product.id)}><i className="material-icons">delete</i></Link>
+
+                                     
                                       </li>
                                       ))
                                       

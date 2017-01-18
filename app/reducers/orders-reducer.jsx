@@ -1,15 +1,18 @@
 import {
   LOAD_ORDERS,
   RECEIVE_ORDERS,
-  RECEIVE_ORDER
+  RECEIVE_ORDER,
+  RECEIVE_CART
 } from '../constants';
 
 
 const initialOrdersState = {
   selected: {
       order: {}
+      
   },
-  list: []
+  list: [],
+  cart: []
 };
 
 export default function (state = initialOrdersState, action) {
@@ -21,8 +24,8 @@ export default function (state = initialOrdersState, action) {
       newState.list = action.orders;
       break;
 
-    case RECEIVE_ORDERS:
-      newState.list = action.orders;
+    case RECEIVE_CART:
+      newState.cart= action.cart;
       break;
 
     case RECEIVE_ORDER:
