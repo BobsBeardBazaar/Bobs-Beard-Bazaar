@@ -24,7 +24,6 @@ describe('<Review />', () => {
 
   it('shows review title', () => {
     expect(root.text()).to.contain(review.title)
-    //expect(root.text()).to.contain(review.Author.name)
   })
 
   xit('calls props.logout when logout is tapped', () => {
@@ -33,25 +32,3 @@ describe('<Review />', () => {
   })
 })
 
-xdescribe("<Review />'s connection", () => {
-  const state = {
-    review: {
-      comment: `It's meh`,
-      rating: 2,
-      title: `It's ok`,
-      product_id: 1,
-      author_id: 2
-    }
-  }
-
-  let root, store, dispatch
-  beforeEach('create store and render the review', () => {
-    store = createStore(state => state, state)
-    dispatch = spy(store, 'dispatch')
-    root = shallow(<WhoAmIContainer store={store}/>)
-  })
-
-  it('gets prop.user from state.auth', () => {
-    expect(root.find(WhoAmI)).to.have.prop('user').eql(state.auth)
-  })
-})
