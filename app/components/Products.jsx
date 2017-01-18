@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export default function (props) {
+const Products = (props) => {
 
   const products = props.products;
 
@@ -40,3 +40,4 @@ export default function (props) {
 }
 
 // <img className="products-img" src={ product.image } />
+export default Products;

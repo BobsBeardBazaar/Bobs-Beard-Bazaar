@@ -41,9 +41,9 @@ describe('User reducer', () => {
         it('sets initialUsersState', () => {
             testStore.dispatch({ type: 'RECEIVE_USERS', users: usersArray });
             const newState = testStore.getState();
-            console.log('NEW STATE FOR USERS', newState);
-            console.log('Store.users', newState.users);
-            expect(newState.usersArray).to.be.deep.equal(usersArray);
+            // console.log('NEW STATE FOR USERS', newState);
+            // console.log('Store.users', newState.users);
+            expect(newState.users).to.be.deep.equal(usersArray);
         });
 
     });

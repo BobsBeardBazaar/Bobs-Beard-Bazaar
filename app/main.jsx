@@ -9,10 +9,8 @@ import { loadOrders, getOrderById } from './action-creators/orders';
 
 import { getReviewById } from './action-creators/reviews';
 
-import { getUserById } from './action-creators/users';
-import { getCartById } from './action-creators/cart';
-
 import { getUsers } from './action-creators/users';
+import { getCartById } from './action-creators/cart';
 
 import store from './store';
 import Login from './components/Login';

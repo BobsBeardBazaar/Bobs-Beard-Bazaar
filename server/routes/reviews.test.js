@@ -64,21 +64,21 @@ describe('/api/reviews', () => {
             .then(res => expect(res.body.length).to.equal(2))
     );
 
-    it('GET all reviews for a user...confirming we have 1 reviews', () =>
+    it('GET all reviews for a user...confirming we have 1 review', () =>
         request(app)
             .get(`/api/reviews?userId=1`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(1))
     );
 
-    it('GET all reviews for a product...confirming we have 1 reviews', () =>
+    it('GET all reviews for a product...confirming we have 1 review', () =>
         request(app)
             .get(`/api/reviews?productId=${theProduct.id}`)
             .expect(200)
             .then(res => expect(res.body.length).to.equal(1))
     );
 
-    it('Can PUT reviews(1)', () =>
+    it('Can UPDATE reviews(1)', () =>
         request(app)
             .put('/api/reviews/1')
             .send({
@@ -89,7 +89,7 @@ describe('/api/reviews', () => {
             .then(res => expect(res.body.title).to.equal('Andrews updated mustache'))
     );
 
-    it('PUT reviews that does not exist', () =>
+    it('Does not UPDATE reviews that do not exist', () =>
         request(app)
             .put('/api/reviews/9982374')
             .send({

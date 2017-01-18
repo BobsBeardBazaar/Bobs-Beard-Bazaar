@@ -4,11 +4,11 @@ const initialUsersState = [];
 
 export default function (state = initialUsersState, action) {
 
-  let newState = Object.assign({}, state);
+  let newState = [];
 
   switch (action.type) {
     case RECEIVE_USERS:
-      newState.users = action.users;
+      newState = action.users;
       break;
 
     default:
