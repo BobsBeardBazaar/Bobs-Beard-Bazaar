@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link, browserHistory } from 'react-router';
 
 import {login} from 'APP/app/reducers/auth';
+import {oAuthLogin} from 'APP/app/reducers/auth';
+
 
 /* -----------------    COMPONENT     ------------------ */
 
@@ -29,6 +31,7 @@ const Login = ({ login }) => {
                         </div>
                     </div>
                     <p>try these... username: `andrew@thebeardsarecoming.io` password: `1234`</p>
+                    <button className="waves-effect waves-light btn"  onClick={oAuthLogin('google')}>Google</button>
                 </div>
             </div>
         </div>

@@ -1,36 +1,34 @@
-const app = require('APP'), {env} = app
-const debug = require('debug')(`${app.name}:auth`)
-const passport = require('passport')
+const app = require('APP'), {env} = app;
+const debug = require('debug')(`${app.name}:auth`);
+const passport = require('passport');
 
-const User = require('APP/db/models/user')
-const OAuth = require('APP/db/models/oauth')
-const auth = require('express').Router()
+const User = require('APP/db/models/user');
+const OAuth = require('APP/db/models/oauth');
+const auth = require('express').Router();
 
 
 /*************************
  * Auth strategies
-
- *
+ * 
  * The OAuth model knows how to configure Passport middleware.
  * To enable an auth strategy, ensure that the appropriate
  * environment variables are set.
- *
+ * 
  * You can do it on the command line:
- *
+ * 
  *   FACEBOOK_CLIENT_ID=abcd FACEBOOK_CLIENT_SECRET=1234 npm start
- *
+ * 
  * Or, better, you can create a ~/.$your_app_name.env.json file in
  * your home directory, and set them in there:
- *
+ * 
  * {
  *   FACEBOOK_CLIENT_ID: 'abcd',
  *   FACEBOOK_CLIENT_SECRET: '1234',
  * }
- *
+ * 
  * Concentrating your secrets this way will make it less likely that you
  * accidentally push them to Github, for example.
- *
-
+ * 
  * When you deploy to production, you'll need to set up these environment
  * variables with your hosting provider.
  **/
@@ -50,13 +48,24 @@ OAuth.setupStrategy({
 
 // Google needs the GOOGLE_CONSUMER_SECRET AND GOOGLE_CONSUMER_KEY
 // environment variables.
+// OAuth.setupStrategy({
+//   provider: 'google',
+//   strategy: require('passport-google-oauth').Strategy,
+//   config: {
+//     consumerKey: env.GOOGLE_CONSUMER_KEY,
+//     consumerSecret: env.GOOGLE_CONSUMER_SECRET,
+//     callbackURL: `${app.rootUrl}/api/auth/google/login`,
+//   },
+//   passport
+// })
+
 OAuth.setupStrategy({
   provider: 'google',
-  strategy: require('passport-google-oauth').Strategy,
+  strategy: require('passport-google-oauth').OAuth2Strategy,
   config: {
-    consumerKey: env.GOOGLE_CONSUMER_KEY,
-    consumerSecret: env.GOOGLE_CONSUMER_SECRET,
-    callbackURL: `${app.rootUrl}/api/auth/login/google`,
+    clientID: env.GOOGLE_CLIENT_ID,
+    clientSecret: env.GOOGLE_CLIENT_SECRET,
+    callbackURL: `${app.baseUrl}/api/auth/google/login`
   },
   passport
 })
@@ -69,7 +78,7 @@ OAuth.setupStrategy({
   config: {
     clientID: env.GITHUB_CLIENT_ID,
     clientSecrets: env.GITHUB_CLIENT_SECRET,
-    callbackURL: `${app.rootUrl}/api/auth/login/github`,
+    callbackURL: `${app.rootUrl}/api/auth/github/login`,
   },
   passport
 })
@@ -109,11 +118,11 @@ passport.use(new (require('passport-local').Strategy) (
         return user.authenticate(password)
           .then(ok => {
             if (!ok) {
-              debug('authenticate user(email: "%s") did fail: bad password')
+              debug('authenticate user(email: "%s") did fail: bad password')              
               return done(null, false, { message: 'Login incorrect' })
             }
             debug('authenticate user(email: "%s") did ok: user.id=%d', user.id)
-            done(null, user)
+            done(null, user)              
           })
       })
       .catch(done)
@@ -122,13 +131,15 @@ passport.use(new (require('passport-local').Strategy) (
 
 auth.get('/whoami', (req, res) => res.send(req.user))
 
-//initial entry point for user to request login to google; redirects user to google (YP added this)
-auth.get('/:strategy', (req, res, next) => {
-  passport.authenticate(req.params.strategy)(req, res, next)
-})
+auth.post('/:strategy', (req, res, next) => {
+  console.log(req.params.strategy);
+  passport.authenticate(req.params.strategy, {
+    scope: ['email']
+  })(req, res, next)
+}
+)
 
-//google then brings user to consumer(us)
-auth.post('/:strategy/login', (req, res, next) =>
+auth.get('/:strategy/login', (req, res, next) =>
   passport.authenticate(req.params.strategy, {
     successRedirect: '/'
   })(req, res, next)
@@ -140,3 +151,4 @@ auth.post('/logout', (req, res, next) => {
 })
 
 module.exports = auth
+

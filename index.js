@@ -31,7 +31,8 @@ if (!reasonableName.test(pkg.name)) {
 //
 // and add it to the environment.
 const env = Object.create(process.env)
-  , secretsFile = resolve(env.HOME, `.${pkg.name}.env`)
+   , secretsFile = resolve(__dirname, `.${pkg.name}.env`)
+ // , secretsFile = resolve(env.HOME, `.${pkg.name}.env`)
 try {
   Object.assign(env, require(secretsFile))
 } catch (error) {
@@ -46,7 +47,7 @@ module.exports = {
     return process.env.NODE_ENV === 'production'
   },
   get baseUrl() {
-    return env.BASE_URL || `http://localhost:${PORT}`
+    return env.BASE_URL || `http://localhost:${this.port}`
   },
   get port() {
     return env.PORT || 1337
